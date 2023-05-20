@@ -195,7 +195,7 @@ namespace AppTest
             this.logIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
             this.logIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logIn.Location = new System.Drawing.Point(204, 341);
+            this.logIn.Location = new System.Drawing.Point(204, 348);
             this.logIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.logIn.Name = "logIn";
             this.logIn.Size = new System.Drawing.Size(532, 45);
@@ -209,7 +209,7 @@ namespace AppTest
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(232)))), ((int)(((byte)(252)))));
-            this.checkBox1.Location = new System.Drawing.Point(427, 302);
+            this.checkBox1.Location = new System.Drawing.Point(427, 309);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(78, 24);
