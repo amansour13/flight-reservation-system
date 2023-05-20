@@ -44,7 +44,7 @@ namespace AppTest
 
         private void signUpButton_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
 
             con.Open();
 

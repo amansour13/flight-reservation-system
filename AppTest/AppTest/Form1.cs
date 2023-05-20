@@ -61,7 +61,7 @@ namespace AppTest
         private void button2_Click(object sender, EventArgs e)
         {
 
-            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
             
             con.Open();
 
@@ -150,6 +150,15 @@ namespace AppTest
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            customerForm newCustomerForm = new customerForm();
+
+            this.Hide();
+            newCustomerForm.ShowDialog();
+            this.Close();
         }
     }
 }
