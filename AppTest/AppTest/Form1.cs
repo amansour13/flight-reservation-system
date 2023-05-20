@@ -80,13 +80,14 @@ namespace AppTest
                 {
                     while (reader.Read())
                     {
-                        label3.Text = reader["ADMINID"].ToString();
+                        // what happens if the user enters valid ceredentails
+                        continue;
                     }
                     
                 }
                 else
                 {
-                    label3.Text = "Invalid credentials";
+                    // what happens if the user enters invalid credentials
                 }
 
                 reader.Close();
@@ -103,13 +104,14 @@ namespace AppTest
                 {
                     while (reader.Read())
                     {
-                        label3.Text = reader["SSN"].ToString();
+                        // what happens if the user enters valid ceredentails
+                        continue;
                     }
 
                 }
                 else
                 {
-                    label3.Text = "Invalid credentials";
+                    // what happens if the user enters invalid credentials
                 }
 
                 reader.Close();
