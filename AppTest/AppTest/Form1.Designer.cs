@@ -135,7 +135,7 @@ namespace AppTest
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            this.textBox1.Location = new System.Drawing.Point(204, 173);
+            this.textBox1.Location = new System.Drawing.Point(204, 179);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(532, 20);
@@ -164,7 +164,7 @@ namespace AppTest
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(232)))), ((int)(((byte)(252)))));
-            this.label1.Location = new System.Drawing.Point(200, 139);
+            this.label1.Location = new System.Drawing.Point(200, 141);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 20);
@@ -177,7 +177,7 @@ namespace AppTest
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(232)))), ((int)(((byte)(252)))));
-            this.label2.Location = new System.Drawing.Point(200, 241);
+            this.label2.Location = new System.Drawing.Point(200, 239);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 20);
@@ -195,7 +195,7 @@ namespace AppTest
             this.logIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
             this.logIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logIn.Location = new System.Drawing.Point(204, 348);
+            this.logIn.Location = new System.Drawing.Point(204, 355);
             this.logIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.logIn.Name = "logIn";
             this.logIn.Size = new System.Drawing.Size(532, 45);
@@ -209,7 +209,7 @@ namespace AppTest
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(232)))), ((int)(((byte)(252)))));
-            this.checkBox1.Location = new System.Drawing.Point(427, 309);
+            this.checkBox1.Location = new System.Drawing.Point(427, 316);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(78, 24);

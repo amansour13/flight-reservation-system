@@ -131,7 +131,6 @@
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
     <None Include="Resources\landing1.png" />
-    <None Include="Resources\landing.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

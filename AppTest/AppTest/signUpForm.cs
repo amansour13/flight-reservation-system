@@ -30,6 +30,7 @@ namespace AppTest
                 SSNTextBox.Hide();
                 customerBirthDate.Hide();
                 BirthdateLabel.Hide();
+                hr7.Hide();
             }
             else if (!adminCheckbox.Checked)
             {
@@ -37,6 +38,7 @@ namespace AppTest
                 SSNTextBox.Show();
                 customerBirthDate.Show();
                 BirthdateLabel.Show();
+                hr7.Show();
             }
         }
 
@@ -89,7 +91,7 @@ namespace AppTest
 
         private void customerBirthDate_ValueChanged(object sender, EventArgs e)
         {
-
+            customerBirthDate.BackColor = Color.Red;
         }
 
         private void logInButton_Click(object sender, EventArgs e)
@@ -99,6 +101,11 @@ namespace AppTest
             this.Hide();
             logIn.ShowDialog();
             this.Close();
+        }
+
+        private void passwordText_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
