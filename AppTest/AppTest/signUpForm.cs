@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace AppTest
 {
@@ -39,14 +40,65 @@ namespace AppTest
             }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void signUpButton_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
+
+            con.Open();
+
+            SqlCommand comm;
+
+            if (adminCheckbox.Checked)
+            {
+                string command = "Insert Into ADMIN VALUES('" + firstNameText.Text.ToString() + "','" 
+                    + lastNameText.Text.ToString()
+                    + "','" + emailText.Text.ToString() + "','" 
+                    + passwordText.Text.ToString() + "')" ;
+                 comm = new SqlCommand(command, con);
+            }
+            else
+            {
+                int SSN = 0;
+                Int32.TryParse(SSNTextBox.Text, out SSN);
+
+                string command = "Insert Into CUSTOMER VALUES('"
+                    + SSN + "','"
+                    + firstNameText.Text.ToString() + "','"
+                    + lastNameText.Text.ToString() + "','"
+                    + passwordText.Text.ToString() + "','"
+                    + customerBirthDate.Value + "','"
+                    + emailText.Text.ToString() + "')";
+                 comm = new SqlCommand(command, con);
+            }
+
+            comm.ExecuteNonQuery();
+
+            string message = "Sign Up Successful \n you can now log in";
+            string title = "Success";
+            MessageBox.Show(message, title);
+
+            LoginPage logIn = new LoginPage();
+
+            this.Hide();
+            logIn.ShowDialog();
+            this.Close();
+
+            con.Close();
+
+        }
+
+        private void customerBirthDate_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void signUpButton_Click(object sender, EventArgs e)
+        private void logInButton_Click(object sender, EventArgs e)
         {
+            LoginPage logIn = new LoginPage();
 
+            this.Hide();
+            logIn.ShowDialog();
+            this.Close();
         }
     }
 }
