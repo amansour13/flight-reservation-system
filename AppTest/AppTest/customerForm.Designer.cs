@@ -30,11 +30,11 @@ namespace AppTest
         private void InitializeComponent()
         {
             this.sideMenuPanel = new System.Windows.Forms.Panel();
-            this.logoPanel = new System.Windows.Forms.Panel();
-            this.profileButton = new System.Windows.Forms.Button();
-            this.flightsListButton = new System.Windows.Forms.Button();
-            this.searchFlightsButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.searchFlightsButton = new System.Windows.Forms.Button();
+            this.flightsListButton = new System.Windows.Forms.Button();
+            this.profileButton = new System.Windows.Forms.Button();
+            this.logoPanel = new System.Windows.Forms.Panel();
             this.sideMenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,43 +52,20 @@ namespace AppTest
             this.sideMenuPanel.Size = new System.Drawing.Size(250, 544);
             this.sideMenuPanel.TabIndex = 0;
             // 
-            // logoPanel
+            // button1
             // 
-            this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.logoPanel.Location = new System.Drawing.Point(0, 0);
-            this.logoPanel.Name = "logoPanel";
-            this.logoPanel.Size = new System.Drawing.Size(250, 100);
-            this.logoPanel.TabIndex = 2;
-            // 
-            // profileButton
-            // 
-            this.profileButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            this.profileButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.profileButton.FlatAppearance.BorderSize = 0;
-            this.profileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.profileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profileButton.Location = new System.Drawing.Point(0, 100);
-            this.profileButton.Name = "profileButton";
-            this.profileButton.Size = new System.Drawing.Size(250, 45);
-            this.profileButton.TabIndex = 3;
-            this.profileButton.Text = "Profile";
-            this.profileButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.profileButton.UseVisualStyleBackColor = false;
-            // 
-            // flightsListButton
-            // 
-            this.flightsListButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            this.flightsListButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flightsListButton.FlatAppearance.BorderSize = 0;
-            this.flightsListButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.flightsListButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flightsListButton.Location = new System.Drawing.Point(0, 145);
-            this.flightsListButton.Name = "flightsListButton";
-            this.flightsListButton.Size = new System.Drawing.Size(250, 45);
-            this.flightsListButton.TabIndex = 4;
-            this.flightsListButton.Text = "Your Flights";
-            this.flightsListButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.flightsListButton.UseVisualStyleBackColor = false;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 499);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(250, 45);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Available Flights";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // searchFlightsButton
             // 
@@ -105,20 +82,43 @@ namespace AppTest
             this.searchFlightsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchFlightsButton.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // flightsListButton
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 499);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(250, 45);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Available Flights";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
+            this.flightsListButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
+            this.flightsListButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flightsListButton.FlatAppearance.BorderSize = 0;
+            this.flightsListButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.flightsListButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flightsListButton.Location = new System.Drawing.Point(0, 145);
+            this.flightsListButton.Name = "flightsListButton";
+            this.flightsListButton.Size = new System.Drawing.Size(250, 45);
+            this.flightsListButton.TabIndex = 4;
+            this.flightsListButton.Text = "Your Flights";
+            this.flightsListButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.flightsListButton.UseVisualStyleBackColor = false;
+            // 
+            // profileButton
+            // 
+            this.profileButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
+            this.profileButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.profileButton.FlatAppearance.BorderSize = 0;
+            this.profileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.profileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profileButton.Location = new System.Drawing.Point(0, 100);
+            this.profileButton.Name = "profileButton";
+            this.profileButton.Size = new System.Drawing.Size(250, 45);
+            this.profileButton.TabIndex = 3;
+            this.profileButton.Text = "Profile";
+            this.profileButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.profileButton.UseVisualStyleBackColor = false;
+            // 
+            // logoPanel
+            // 
+            this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logoPanel.Location = new System.Drawing.Point(0, 0);
+            this.logoPanel.Name = "logoPanel";
+            this.logoPanel.Size = new System.Drawing.Size(250, 100);
+            this.logoPanel.TabIndex = 2;
             // 
             // customerForm
             // 
@@ -127,7 +127,9 @@ namespace AppTest
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(3)))), ((int)(((byte)(27)))));
             this.ClientSize = new System.Drawing.Size(928, 544);
             this.Controls.Add(this.sideMenuPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "customerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "customerForm";
             this.sideMenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);

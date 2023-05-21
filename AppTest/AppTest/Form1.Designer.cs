@@ -55,7 +55,6 @@ namespace AppTest
             this.logo = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.signUp = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.aDMINBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightReservationDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightReservationDataSet)).BeginInit();
@@ -216,7 +215,6 @@ namespace AppTest
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(3)))), ((int)(((byte)(27)))));
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.hr2);
             this.panel1.Controls.Add(this.hr1);
             this.panel1.Controls.Add(this.logo);
@@ -238,7 +236,7 @@ namespace AppTest
             // 
             this.hr2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
             this.hr2.Location = new System.Drawing.Point(153, 237);
-            this.hr2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.hr2.Margin = new System.Windows.Forms.Padding(2);
             this.hr2.Name = "hr2";
             this.hr2.Size = new System.Drawing.Size(399, 4);
             this.hr2.TabIndex = 13;
@@ -247,7 +245,7 @@ namespace AppTest
             // 
             this.hr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
             this.hr1.Location = new System.Drawing.Point(153, 163);
-            this.hr1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.hr1.Margin = new System.Windows.Forms.Padding(2);
             this.hr1.Name = "hr1";
             this.hr1.Size = new System.Drawing.Size(399, 4);
             this.hr1.TabIndex = 12;
@@ -259,7 +257,7 @@ namespace AppTest
             | System.Windows.Forms.AnchorStyles.Right)));
             this.logo.Image = global::AppTest.Properties.Resources.landing1;
             this.logo.Location = new System.Drawing.Point(313, 20);
-            this.logo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logo.Margin = new System.Windows.Forms.Padding(2);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(75, 81);
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -289,16 +287,6 @@ namespace AppTest
             this.signUp.Text = "Sign Up";
             this.signUp.UseVisualStyleBackColor = false;
             this.signUp.Click += new System.EventHandler(this.signUp_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(609, 288);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // LoginPage
             // 
@@ -354,7 +342,6 @@ namespace AppTest
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Panel hr2;
         private System.Windows.Forms.Panel hr1;
-        private System.Windows.Forms.Button button1;
     }
 }
 
