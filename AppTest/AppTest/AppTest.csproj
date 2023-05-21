@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="availableFlights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="availableFlights.Designer.cs">
+      <DependentUpon>availableFlights.cs</DependentUpon>
+    </Compile>
     <Compile Include="customerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,15 @@
     <Compile Include="signUpForm.Designer.cs">
       <DependentUpon>signUpForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="yourFlights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="yourFlights.Designer.cs">
+      <DependentUpon>yourFlights.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="availableFlights.resx">
+      <DependentUpon>availableFlights.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="customerForm.resx">
       <DependentUpon>customerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +130,9 @@
     </Compile>
     <EmbeddedResource Include="signUpForm.resx">
       <DependentUpon>signUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="yourFlights.resx">
+      <DependentUpon>yourFlights.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="FlightReservationDataSet.xsc">
       <DependentUpon>FlightReservationDataSet.xsd</DependentUpon>

@@ -98,7 +98,7 @@ namespace AppTest
             }
             else
             {
-                string command = "SELECT CFNAME, CLNAME FROM CUSTOMER WHERE CONVERT(nvarchar(MAX), CMAIL) = '" +
+                string command = "SELECT * FROM CUSTOMER WHERE CONVERT(nvarchar(MAX), CMAIL) = '" +
                                  textBox1.Text + "' AND CONVERT(nvarchar(MAX), CPASSWORD) = '" +
                                  textBox2.Text + "'";
                 SqlCommand comm = new SqlCommand(command, con);
@@ -110,8 +110,7 @@ namespace AppTest
                     {
                         
                         customerForm cForm = new customerForm();
-                        cForm.Fname = reader["CFNAME"].ToString();
-                        cForm.Lname = reader["CLNAME"].ToString();
+                        cForm.CustomerData = reader;
                         
                         this.Hide();
 
@@ -171,6 +170,11 @@ namespace AppTest
             this.Hide();
             newCustomerForm.ShowDialog();
             this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

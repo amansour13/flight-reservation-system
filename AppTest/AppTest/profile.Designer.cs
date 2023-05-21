@@ -89,6 +89,7 @@
             this.CustomerPanel.Padding = new System.Windows.Forms.Padding(100, 50, 100, 100);
             this.CustomerPanel.Size = new System.Drawing.Size(886, 623);
             this.CustomerPanel.TabIndex = 1;
+            this.CustomerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CustomerPanel_Paint);
             // 
             // hr4
             // 

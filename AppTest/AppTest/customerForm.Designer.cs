@@ -35,13 +35,13 @@ namespace AppTest
             this.flightsListButton = new System.Windows.Forms.Button();
             this.profileButton = new System.Windows.Forms.Button();
             this.logoPanel = new System.Windows.Forms.Panel();
-            this.logoBox = new System.Windows.Forms.PictureBox();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.helloLabel = new System.Windows.Forms.Label();
+            this.logoBox = new System.Windows.Forms.PictureBox();
             this.sideMenuPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             this.mainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             this.SuspendLayout();
             // 
             // sideMenuPanel
@@ -95,6 +95,7 @@ namespace AppTest
             this.searchFlightsButton.Text = "Available Flights";
             this.searchFlightsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchFlightsButton.UseVisualStyleBackColor = false;
+            this.searchFlightsButton.Click += new System.EventHandler(this.searchFlightsButton_Click);
             // 
             // flightsListButton
             // 
@@ -113,6 +114,7 @@ namespace AppTest
             this.flightsListButton.Text = "Your Flights";
             this.flightsListButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.flightsListButton.UseVisualStyleBackColor = false;
+            this.flightsListButton.Click += new System.EventHandler(this.flightsListButton_Click);
             // 
             // profileButton
             // 
@@ -145,18 +147,6 @@ namespace AppTest
             this.logoPanel.TabIndex = 2;
             this.logoPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.logoPanel_Paint);
             // 
-            // logoBox
-            // 
-            this.logoBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.logoBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoBox.Image = global::AppTest.Properties.Resources.landing;
-            this.logoBox.Location = new System.Drawing.Point(0, 0);
-            this.logoBox.Name = "logoBox";
-            this.logoBox.Size = new System.Drawing.Size(333, 170);
-            this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.logoBox.TabIndex = 0;
-            this.logoBox.TabStop = false;
-            // 
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(11)))), ((int)(((byte)(35)))));
@@ -180,6 +170,18 @@ namespace AppTest
             this.helloLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.helloLabel.Click += new System.EventHandler(this.helloLabel_Click);
             // 
+            // logoBox
+            // 
+            this.logoBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.logoBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logoBox.Image = global::AppTest.Properties.Resources.landing;
+            this.logoBox.Location = new System.Drawing.Point(0, 0);
+            this.logoBox.Name = "logoBox";
+            this.logoBox.Size = new System.Drawing.Size(333, 170);
+            this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.logoBox.TabIndex = 0;
+            this.logoBox.TabStop = false;
+            // 
             // customerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -196,8 +198,8 @@ namespace AppTest
             this.Load += new System.EventHandler(this.customerForm_Load);
             this.sideMenuPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
             this.mainPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
             this.ResumeLayout(false);
 
         }

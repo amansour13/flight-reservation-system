@@ -8,6 +8,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace AppTest
 {
@@ -18,11 +19,11 @@ namespace AppTest
         {
             InitializeComponent();
         }
-        public string Fname { get; set; }
-        public string Lname { get; set; }
+
+        public SqlDataReader CustomerData { get; set; }
         private void customerForm_Load(object sender, EventArgs e)
         {
-            helloLabel.Text = "Hello " + Fname + " " + Lname + " :)";
+            helloLabel.Text = "Hello " + CustomerData["CFNAME"].ToString() + " " + CustomerData["CLNAME"].ToString() + " :)";
         }
 
         private void logoPanel_Paint(object sender, PaintEventArgs e)
@@ -61,7 +62,23 @@ namespace AppTest
 
         private void profileButton_Click(object sender, EventArgs e)
         {
-            openChildFormInPanel(new profile());
+            profile p = new profile();
+            p.CustomerData = CustomerData;
+            openChildFormInPanel(p);
+        }
+
+        private void flightsListButton_Click(object sender, EventArgs e)
+        {
+            yourFlights f = new yourFlights();
+            // data to be initiliazed here ...
+            openChildFormInPanel(f);
+        }
+
+        private void searchFlightsButton_Click(object sender, EventArgs e)
+        {
+            availableFlights f = new availableFlights();
+            // data to be initiliazed here ...
+            openChildFormInPanel(f);
         }
     }
 }

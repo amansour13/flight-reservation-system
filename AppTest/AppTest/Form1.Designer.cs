@@ -50,12 +50,12 @@ namespace AppTest
             this.logIn = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.invalid = new System.Windows.Forms.Label();
             this.hr2 = new System.Windows.Forms.Panel();
             this.hr1 = new System.Windows.Forms.Panel();
             this.logo = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.signUp = new System.Windows.Forms.Button();
-            this.invalid = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.aDMINBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightReservationDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightReservationDataSet)).BeginInit();
@@ -137,7 +137,7 @@ namespace AppTest
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
             this.textBox1.Location = new System.Drawing.Point(204, 178);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(532, 20);
             this.textBox1.TabIndex = 0;
@@ -153,7 +153,7 @@ namespace AppTest
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
             this.textBox2.Location = new System.Drawing.Point(204, 270);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(532, 20);
@@ -197,7 +197,7 @@ namespace AppTest
             this.logIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logIn.Location = new System.Drawing.Point(204, 354);
-            this.logIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.logIn.Margin = new System.Windows.Forms.Padding(4);
             this.logIn.Name = "logIn";
             this.logIn.Size = new System.Drawing.Size(532, 46);
             this.logIn.TabIndex = 5;
@@ -211,7 +211,7 @@ namespace AppTest
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(232)))), ((int)(((byte)(252)))));
             this.checkBox1.Location = new System.Drawing.Point(427, 316);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(78, 24);
             this.checkBox1.TabIndex = 6;
@@ -235,11 +235,21 @@ namespace AppTest
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(200, 199, 200, 199);
             this.panel1.Size = new System.Drawing.Size(932, 553);
             this.panel1.TabIndex = 7;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // invalid
+            // 
+            this.invalid.AutoSize = true;
+            this.invalid.ForeColor = System.Drawing.Color.Red;
+            this.invalid.Location = new System.Drawing.Point(586, 142);
+            this.invalid.Name = "invalid";
+            this.invalid.Size = new System.Drawing.Size(0, 16);
+            this.invalid.TabIndex = 8;
             // 
             // hr2
             // 
@@ -291,22 +301,13 @@ namespace AppTest
             this.signUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signUp.Location = new System.Drawing.Point(204, 470);
-            this.signUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.signUp.Margin = new System.Windows.Forms.Padding(4);
             this.signUp.Name = "signUp";
             this.signUp.Size = new System.Drawing.Size(532, 46);
             this.signUp.TabIndex = 10;
             this.signUp.Text = "Sign Up";
             this.signUp.UseVisualStyleBackColor = false;
             this.signUp.Click += new System.EventHandler(this.signUp_Click);
-            // 
-            // invalid
-            // 
-            this.invalid.AutoSize = true;
-            this.invalid.ForeColor = System.Drawing.Color.Red;
-            this.invalid.Location = new System.Drawing.Point(586, 142);
-            this.invalid.Name = "invalid";
-            this.invalid.Size = new System.Drawing.Size(0, 16);
-            this.invalid.TabIndex = 8;
             // 
             // LoginPage
             // 
@@ -315,7 +316,7 @@ namespace AppTest
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(3)))), ((int)(((byte)(27)))));
             this.ClientSize = new System.Drawing.Size(932, 553);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LoginPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Flight Reservtion System";

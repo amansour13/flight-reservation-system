@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace AppTest
         public profile()
         {
             InitializeComponent();
+        }
+        public SqlDataReader CustomerData { get; set; }
+        private void CustomerPanel_Paint(object sender, PaintEventArgs e)
+        {
+            firstNameText.Text = CustomerData["CFNAME"].ToString();
+            
         }
     }
 }
