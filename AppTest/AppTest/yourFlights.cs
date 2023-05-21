@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace AppTest
 {
@@ -102,6 +103,9 @@ namespace AppTest
                 outgoingDate.Text = "Outgoing Date : ";
                 price.Text = "Price : ";
 
+                arrivingDate.AutoSize = true;
+                outgoingDate.AutoSize = true;
+
                 destination.ForeColor = Color.White;
                 source.ForeColor = Color.White;
                 arrivingDate.ForeColor = Color.White;
@@ -151,15 +155,15 @@ namespace AppTest
             }
 
             public void setData(string flightId, string seatNumber, string flightClass, string state, string to, string from, string outgoing, string arriving, string price) {
-                this.flightid.Text += flightId;
-                this.seatNumber.Text = seatNumber;
-                this.flightClass.Text = flightClass;
-                this.state.Text = state;
-                this.destination.Text = to;
-                this.source.Text = from;
-                this.price.Text = price;
-                this.outgoingDate.Text = outgoing;
-                this.arrivingDate.Text = arriving;
+                this.flightid.Text += flightId;  //flight
+                this.seatNumber.Text += seatNumber;  //booking
+                this.flightClass.Text += flightClass;  // booking
+                this.state.Text += state;  //booking 
+                this.destination.Text += to;  //flight
+                this.source.Text += from;  //flight
+                this.price.Text += price;  //booking
+                this.outgoingDate.Text += outgoing;  //flight
+                this.arrivingDate.Text += arriving;  //flight
             }
         }
         public yourFlights()
@@ -169,26 +173,54 @@ namespace AppTest
 
         private void yourFlights_Load(object sender, EventArgs e)
         {
+
+            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
+
+            con.Open();
+            DataTable flights = new DataTable();
+            DataTable bookings = new DataTable();
             // TODO: This line of code loads data into the 'flightReservationDataSet.CUSTOMER' table. You can move, or remove it, as needed.
             this.cUSTOMERTableAdapter.Fill(this.flightReservationDataSet.CUSTOMER);
 
-            flightsDetails a = new flightsDetails();
+            DataRow row = Program.CustomerData.Rows[0];
+
+            string command = "SELECT * FROM BOOKING WHERE SSN = " + (int)row["SSN"];
+            SqlCommand comm = new SqlCommand(command, con);
+            SqlDataReader reader = comm.ExecuteReader();
+
+            bookings.Load(reader);
 
 
-            // this to add new ticket
-            flightsDetails f = new flightsDetails();
-            panel1.Controls.Add(f.space);
-            f.space.BringToFront();
-            panel1.Controls.Add(f.main);
-            f.main.BringToFront();
-            // end of adding one ticket
+            command = "SELECT * FROM FLIGHT, BOOKING WHERE FLIGHT.FLIGHTID = BOOKING.FLIGHTID AND BOOKING.SSN = " + (int)row["SSN"];
+            comm = new SqlCommand(command, con);
+            reader = comm.ExecuteReader();
 
+            flights.Load(reader);
 
-            panel1.Controls.Add(a.space);
-            a.space.BringToFront();
-            panel1.Controls.Add(a.main);
-            a.main.BringToFront();
+            DataRow flightsRow;
+            DataRow bookingsRow;
+
+            for (int i = 0; i < flights.Rows.Count; i++)
+            {
+                flightsRow = flights.Rows[i];
+                bookingsRow = bookings.Rows[i];
+
+                flightsDetails f = new flightsDetails();
+                panel1.Controls.Add(f.space);
+                f.space.BringToFront();
+                panel1.Controls.Add(f.main);
+                f.main.BringToFront();
+                f.setData(flightsRow["FLIGHTID"].ToString(), bookingsRow["SEATNUMBER"].ToString(),
+                    bookingsRow["CLASS"].ToString(), bookingsRow["STATE"].ToString(),
+                    flightsRow["DESTINATION"].ToString(),
+                    flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString(),
+                    flightsRow["ARRIVINGDATE"].ToString(),
+                    bookingsRow["PRICE"].ToString());
+            }
             
+
+            reader.Close();
+            con.Close();
         }
     }
 }

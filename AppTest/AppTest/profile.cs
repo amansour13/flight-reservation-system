@@ -113,8 +113,10 @@ namespace AppTest
             //}
             reader.Close();
             con.Close();
+
+            string message = "Profile Information Updated";
+            string title = "Success";
+            MessageBox.Show(message, title);
         }
-        public SqlDataReader CustomerData { get; set; }
-        
     }
 }
