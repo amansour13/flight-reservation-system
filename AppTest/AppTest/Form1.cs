@@ -58,10 +58,13 @@ namespace AppTest
 
         }
 
+
+
         private void button2_Click(object sender, EventArgs e)
         {
-
-            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
+            // LAPTOP-H6PI0HTC
+            // DESKTOP-C145KAF
+            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
             
             con.Open();
 
@@ -88,13 +91,14 @@ namespace AppTest
                 else
                 {
                     // what happens if the user enters invalid credentials
+                    invalid.Text = "* inavlid Ceredentials";
                 }
 
                 reader.Close();
             }
             else
             {
-                string command = "SELECT SSN FROM CUSTOMER WHERE CONVERT(nvarchar(MAX), CMAIL) = '" +
+                string command = "SELECT CFNAME, CLNAME FROM CUSTOMER WHERE CONVERT(nvarchar(MAX), CMAIL) = '" +
                                  textBox1.Text + "' AND CONVERT(nvarchar(MAX), CPASSWORD) = '" +
                                  textBox2.Text + "'";
                 SqlCommand comm = new SqlCommand(command, con);
@@ -104,14 +108,22 @@ namespace AppTest
                 {
                     while (reader.Read())
                     {
-                        // what happens if the user enters valid ceredentails
-                        continue;
+                        
+                        customerForm cForm = new customerForm();
+                        cForm.Fname = reader["CFNAME"].ToString();
+                        cForm.Lname = reader["CLNAME"].ToString();
+                        
+                        this.Hide();
+
+                        cForm.ShowDialog();
+
+                        this.Close();
                     }
 
                 }
                 else
                 {
-                    // what happens if the user enters invalid credentials
+                    invalid.Text = "* inavlid Ceredentials";
                 }
 
                 reader.Close();

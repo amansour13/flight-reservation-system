@@ -67,3 +67,5 @@ C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo
 C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.csproj.CoreCompileInputs.cache
 C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.exe
 C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.pdb
+D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.customerForm.resources
+D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.profile.resources
