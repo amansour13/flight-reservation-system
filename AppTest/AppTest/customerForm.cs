@@ -58,5 +58,10 @@ namespace AppTest
             childForm.BringToFront();
             childForm.Show();
         }
+
+        private void profileButton_Click(object sender, EventArgs e)
+        {
+            openChildFormInPanel(new profile());
+        }
     }
 }

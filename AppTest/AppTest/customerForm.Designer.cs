@@ -131,6 +131,7 @@ namespace AppTest
             this.profileButton.Text = "Profile";
             this.profileButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.profileButton.UseVisualStyleBackColor = false;
+            this.profileButton.Click += new System.EventHandler(this.profileButton_Click);
             // 
             // logoPanel
             // 
@@ -168,13 +169,12 @@ namespace AppTest
             // 
             // helloLabel
             // 
-            this.helloLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.helloLabel.AutoSize = true;
+            this.helloLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.helloLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.helloLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            this.helloLabel.Location = new System.Drawing.Point(432, 299);
+            this.helloLabel.Location = new System.Drawing.Point(0, 0);
             this.helloLabel.Name = "helloLabel";
-            this.helloLabel.Size = new System.Drawing.Size(95, 36);
+            this.helloLabel.Size = new System.Drawing.Size(904, 670);
             this.helloLabel.TabIndex = 0;
             this.helloLabel.Text = "label1";
             this.helloLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -198,7 +198,6 @@ namespace AppTest
             this.logoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
             this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
