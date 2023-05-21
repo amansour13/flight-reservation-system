@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace AppTest
 {
@@ -19,11 +19,11 @@ namespace AppTest
         {
             InitializeComponent();
         }
-
-        public SqlDataReader CustomerData { get; set; }
+        // public SqlDataReader CustomerData { get; set; }
         private void customerForm_Load(object sender, EventArgs e)
         {
-            helloLabel.Text = "Hello " + CustomerData["CFNAME"].ToString() + " " + CustomerData["CLNAME"].ToString() + " :)";
+            DataRow row = Program.CustomerData.Rows[0];
+            helloLabel.Text = "Hello " + (string)row["CFNAME"].ToString() + " " + (string)row["CLNAME"].ToString() + " :)";
         }
 
         private void logoPanel_Paint(object sender, PaintEventArgs e)
@@ -35,6 +35,7 @@ namespace AppTest
         {
             LoginPage login = new LoginPage();
             this.Hide();
+            Program.CustomerData.Rows.Clear();
             login.ShowDialog();
             this.Close();
 
@@ -63,22 +64,21 @@ namespace AppTest
         private void profileButton_Click(object sender, EventArgs e)
         {
             profile p = new profile();
-            p.CustomerData = CustomerData;
+            // Program.CustomerData = CustomerData;
             openChildFormInPanel(p);
         }
 
         private void flightsListButton_Click(object sender, EventArgs e)
         {
-            yourFlights f = new yourFlights();
-            // data to be initiliazed here ...
-            openChildFormInPanel(f);
+            yourFlights yourFlights = new yourFlights();
+
+            openChildFormInPanel(yourFlights);
         }
 
         private void searchFlightsButton_Click(object sender, EventArgs e)
         {
-            availableFlights f = new availableFlights();
-            // data to be initiliazed here ...
-            openChildFormInPanel(f);
+            availableFlights availableFlights = new availableFlights();
+            openChildFormInPanel(availableFlights);
         }
     }
 }

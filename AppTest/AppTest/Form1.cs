@@ -64,7 +64,8 @@ namespace AppTest
         {
             // LAPTOP-H6PI0HTC
             // DESKTOP-C145KAF
-            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+            // DESKTOP-A34VKT1
+            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
             
             con.Open();
 
@@ -106,18 +107,15 @@ namespace AppTest
 
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        
-                        customerForm cForm = new customerForm();
-                        cForm.CustomerData = reader;
-                        
-                        this.Hide();
 
-                        cForm.ShowDialog();
+                    Program.CustomerData.Load(reader);
+                    customerForm cForm = new customerForm();
 
-                        this.Close();
-                    }
+                    this.Hide();
+
+                    cForm.ShowDialog();
+
+                    this.Close();
 
                 }
                 else
