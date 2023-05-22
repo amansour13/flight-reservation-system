@@ -31,6 +31,11 @@ namespace AppTest
 
                 con.Open();
 
+                if ((!Program.IsStringNumeric(search.Text)))
+                {
+                    throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
+                }
+
                 int aircraftID = 0;
                 Int32.TryParse(search.Text, out aircraftID);
 

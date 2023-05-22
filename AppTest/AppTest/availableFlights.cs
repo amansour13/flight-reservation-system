@@ -184,48 +184,56 @@ namespace AppTest
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            dataPanel.Controls.Clear(); 
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
-
-            con.Open();
-            DataTable flights = new DataTable();
-
-            string command = "SELECT * FROM FLIGHT WHERE CONVERT(nvarchar(MAX), SOURCE) = '" + comboBox1.Text
-                + "'AND CONVERT(nvarchar(MAX), DESTINATION) = '" + comboBox2.Text
-                + "'AND OUTGOINGDATE = '" + comboBox3.Text + "'";
-            SqlCommand comm = new SqlCommand(command, con);
-            SqlDataReader reader = comm.ExecuteReader();
-
-            flights.Load(reader);
-
-            DataRow flightsRow;
-
-            for (int i = 0; i < flights.Rows.Count; i++)
+            try
             {
-                flightsRow = flights.Rows[i];
+                dataPanel.Controls.Clear();
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-                flightsBookingDetails f = new flightsBookingDetails();
+                con.Open();
+                DataTable flights = new DataTable();
 
-                float std = float.Parse(flightsRow["STANDARDPRICE"].ToString());
-                char c = comboBox4.Text[0];
+                string command = "SELECT * FROM FLIGHT WHERE CONVERT(nvarchar(MAX), SOURCE) = '" + comboBox1.Text
+                    + "'AND CONVERT(nvarchar(MAX), DESTINATION) = '" + comboBox2.Text
+                    + "'AND OUTGOINGDATE = '" + comboBox3.Text + "'";
+                SqlCommand comm = new SqlCommand(command, con);
+                SqlDataReader reader = comm.ExecuteReader();
 
-                string price = Program.priceFormula(std, c).ToString();
+                flights.Load(reader);
 
-                f.setData(flightsRow["FLIGHTID"].ToString(), flightsRow["SEATSNUMBER"].ToString()
-                , comboBox4.Text, flightsRow["DESTINATION"].ToString()
-                , flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString()
-                , flightsRow["ARRIVINGDATE"].ToString()
-                , price);
+                DataRow flightsRow;
+
+                for (int i = 0; i < flights.Rows.Count; i++)
+                {
+                    flightsRow = flights.Rows[i];
+
+                    flightsBookingDetails f = new flightsBookingDetails();
+
+                    float std = float.Parse(flightsRow["STANDARDPRICE"].ToString());
+                    char c = comboBox4.Text[0];
+
+                    string price = Program.priceFormula(std, c).ToString();
+
+                    f.setData(flightsRow["FLIGHTID"].ToString(), flightsRow["SEATSNUMBER"].ToString()
+                    , comboBox4.Text, flightsRow["DESTINATION"].ToString()
+                    , flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString()
+                    , flightsRow["ARRIVINGDATE"].ToString()
+                    , price);
 
 
-                dataPanel.Controls.Add(f.space);
-                dataPanel.Controls.Add(f.main);
+                    dataPanel.Controls.Add(f.space);
+                    dataPanel.Controls.Add(f.main);
 
+                }
+                reader.Close();
+                con.Close();
             }
-
-
-            reader.Close();
-            con.Close();
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
+            }
         }
     }
 }
