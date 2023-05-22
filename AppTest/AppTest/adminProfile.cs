@@ -18,7 +18,7 @@ namespace AppTest
             InitializeComponent();
 
 
-            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
             con.Open();
             
