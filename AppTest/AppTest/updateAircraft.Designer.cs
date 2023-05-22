@@ -52,8 +52,8 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.search = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.flightReservationDataSet1 = new AppTest.FlightReservationDataSet();
             this.aircraftIDLabel = new System.Windows.Forms.Label();
+            this.flightReservationDataSet1 = new AppTest.FlightReservationDataSet();
             this.CustomerPanel.SuspendLayout();
             this.mainSearchPanel.SuspendLayout();
             this.searchPanel.SuspendLayout();
@@ -327,11 +327,6 @@
             this.panel1.Size = new System.Drawing.Size(684, 41);
             this.panel1.TabIndex = 2;
             // 
-            // flightReservationDataSet1
-            // 
-            this.flightReservationDataSet1.DataSetName = "FlightReservationDataSet";
-            this.flightReservationDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // aircraftIDLabel
             // 
             this.aircraftIDLabel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -343,6 +338,11 @@
             this.aircraftIDLabel.Size = new System.Drawing.Size(684, 30);
             this.aircraftIDLabel.TabIndex = 27;
             this.aircraftIDLabel.Text = "Enter Aircraft ID : ";
+            // 
+            // flightReservationDataSet1
+            // 
+            this.flightReservationDataSet1.DataSetName = "FlightReservationDataSet";
+            this.flightReservationDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // updateAircraft
             // 

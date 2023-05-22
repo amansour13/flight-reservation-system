@@ -85,7 +85,7 @@ namespace AppTest
             comm = new SqlCommand(command, con);
             comm.ExecuteNonQuery();
 
-            string message = "Flight Updated Successfully\n";
+            string message = "Flight with ID = " + globalFlightID.ToString() + "\nUpdated Successfully\n";
             string title = "Success";
             MessageBox.Show(message, title);
 

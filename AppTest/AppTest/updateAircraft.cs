@@ -70,7 +70,7 @@ namespace AppTest
             comm = new SqlCommand(command, con);
             comm.ExecuteNonQuery();
 
-            string message = "Aircraft Updated Successfully\n";
+            string message = "Aircraft with ID = " + globalAircraftID.ToString() + "\nUpdated Successfully\n";
             string title = "Success";
             MessageBox.Show(message, title);
 

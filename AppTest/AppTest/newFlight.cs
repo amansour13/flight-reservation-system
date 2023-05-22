@@ -52,7 +52,7 @@ namespace AppTest
 
             comm.ExecuteNonQuery();
 
-            string message = "Flight Added Successful\n";
+            string message = "Flight Added Successfully\n";
             string title = "Success";
             MessageBox.Show(message, title);
 
@@ -62,6 +62,8 @@ namespace AppTest
             destinationText.Text = "";
             outgoing.Value = DateTime.Now;
             arriving.Value = DateTime.Now;
+
+            con.Close();
         }
     }
 }

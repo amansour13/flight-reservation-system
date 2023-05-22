@@ -44,13 +44,15 @@ namespace AppTest
 
             comm.ExecuteNonQuery();
 
-            string message = "Aircraft Added Successful\n";
+            string message = "Aircraft Added Successfully\n";
             string title = "Success";
             MessageBox.Show(message, title);
 
             capacityText.Text = "";
             manfactText.Text = "";
             distanceText.Text = "";
+
+            con.Close();
         }
     }
 }
