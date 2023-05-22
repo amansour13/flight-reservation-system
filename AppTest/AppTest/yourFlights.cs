@@ -207,7 +207,7 @@ namespace AppTest
 
             private void chooseClassClick(object sender, EventArgs e)
             {
-                SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
                 con.Open();
 
@@ -250,7 +250,7 @@ namespace AppTest
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+                    SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
                     con.Open();
 
@@ -291,7 +291,7 @@ namespace AppTest
         public void yourFlights_Load(object sender, EventArgs e)
         {
 
-            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
             con.Open();
             DataTable flights = new DataTable();

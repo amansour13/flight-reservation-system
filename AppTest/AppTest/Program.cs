@@ -10,6 +10,12 @@ namespace AppTest
 {
     static class Program
     {
+        // LAPTOP-H6PI0HTC
+        // DESKTOP-C145KAF
+        // DESKTOP-A34VKT1
+        public static string serverName = "DESKTOP-C145KAF";
+
+
         public static DataTable CustomerData = new DataTable("CUSTOMER");
         /// <summary>
         /// The main entry point for the application.
