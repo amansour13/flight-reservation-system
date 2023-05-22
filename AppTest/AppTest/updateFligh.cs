@@ -29,12 +29,13 @@ namespace AppTest
             int flightID = 0;
             Int32.TryParse(search.Text, out flightID) ;
 
-            string updateCommand = "SELECT * FROM FLIGHT WHERE AIRCRAFTID = " + flightID;
+            string updateCommand = "SELECT * FROM FLIGHT WHERE FLIGHTID = " + flightID;
             SqlCommand updatComm = new SqlCommand(updateCommand, con);
             SqlDataReader reader = updatComm.ExecuteReader();
 
-            globalFlightID = flightID;
+            
 
+            int tempID = 0;
             while (reader.Read())
             {
                 aircraftIdText.Text = reader["AIRCRAFTID"].ToString();
@@ -43,14 +44,32 @@ namespace AppTest
                 destinationText.Text = reader["DESTINATION"].ToString();
                 outgoing.Value = (DateTime)reader["OUTGOINGDATE"];
                 arriving.Value = (DateTime)reader["ARRIVINGDATE"];
+
+                tempID = (int)reader["FLIGHTID"];
             }
+
+
 
             reader.Close();
             con.Close();
 
-            mainSearchPanel.Height = 623;
-            mainSearchPanel.Visible = true;
-            searchPanel.Visible = false;
+
+            if (flightID != tempID)
+            {
+                string message = "Sorry this ID is NOT EXIST\n";
+                string title = "Success";
+                MessageBox.Show(message, title);
+            }
+            else
+            {
+                mainSearchPanel.Height = 623;
+                mainSearchPanel.Visible = true;
+                searchPanel.Visible = false;
+                globalFlightID = flightID;
+            }
+
+            
+
         }
 
         private void updateFligh_Load_1(object sender, EventArgs e)

@@ -37,20 +37,32 @@ namespace AppTest
             SqlCommand updatComm = new SqlCommand(updateCommand, con);
             SqlDataReader reader = updatComm.ExecuteReader();
 
-            globalAircraftID = aircraftID;
+            
 
+            int tempID = 0;
             while (reader.Read())
             {
                 capacityText.Text = reader["CAPACITY"].ToString();
                 manfactText.Text = reader["MANFACTURER"].ToString();
                 distanceText.Text = reader["DISTANCEALLOWED"].ToString();
+                tempID = (int)reader["AIRCRAFTID"];
             }
 
             reader.Close();
             con.Close();
 
-            mainSearchPanel.Visible = true;
-            searchPanel.Visible = false;
+            if (aircraftID != tempID)
+            {
+                string message = "Sorry this ID is NOT EXIST\n";
+                string title = "Success";
+                MessageBox.Show(message, title);
+            }
+            else
+            {
+                mainSearchPanel.Visible = true;
+                searchPanel.Visible = false;
+                globalAircraftID = aircraftID;
+            }
         }
 
         public int globalAircraftID = new int(); 
