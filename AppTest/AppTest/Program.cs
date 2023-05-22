@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+
 
 namespace AppTest
 {
@@ -14,6 +16,18 @@ namespace AppTest
         // DESKTOP-C145KAF
         // DESKTOP-A34VKT1
         public static string serverName = "DESKTOP-C145KAF";
+
+        public static bool IsValidEmail(string email)
+        {
+            // Regular expression pattern for email validation
+            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+
+            // Create a Regex object with the pattern
+            Regex regex = new Regex(pattern);
+
+            // Check if the email matches the pattern
+            return regex.IsMatch(email);
+        }
 
         public static float priceFormula(float standardPrice, char flightClass)
         {

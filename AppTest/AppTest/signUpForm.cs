@@ -52,6 +52,13 @@ namespace AppTest
 
                 SqlCommand comm;
 
+
+                // to be added later
+                /*if (!Program.IsValidEmail(emailText.Text))
+                {
+                    throw new Exception("ERROR: Invalid Email Address\n");
+                }*/
+
                 if (adminCheckbox.Checked)
                 {
                     string command = "Insert Into ADMIN VALUES('" + firstNameText.Text.ToString() + "','"
