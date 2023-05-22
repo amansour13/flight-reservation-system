@@ -104,3 +104,9 @@ D:\Ahmed\database\projectImplementation\New folder\flight-reservation-system\App
 D:\Ahmed\database\projectImplementation\New folder\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.csproj.CoreCompileInputs.cache
 D:\Ahmed\database\projectImplementation\New folder\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.exe
 D:\Ahmed\database\projectImplementation\New folder\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.pdb
+C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.adminForm.resources
+C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.adminProfile.resources
+C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.newAircraft.resources
+C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.newFlight.resources
+C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.updateAircraft.resources
+C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.updateFligh.resources

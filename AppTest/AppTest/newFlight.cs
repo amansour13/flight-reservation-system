@@ -48,8 +48,8 @@ namespace AppTest
                 int seatsNum = 0;
                 Int32.TryParse(seatsNumText.Text, out seatsNum);
 
-                int standardPrice = 0;
-                Int32.TryParse(standardPriceText.Text, out standardPrice);
+                float standardPrice = float.Parse(standardPriceText.Text);
+                
 
                 DataRow row = Program.CustomerData.Rows[0];
 

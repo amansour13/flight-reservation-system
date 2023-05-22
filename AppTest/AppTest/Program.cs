@@ -13,7 +13,7 @@ namespace AppTest
         // LAPTOP-H6PI0HTC
         // DESKTOP-C145KAF
         // DESKTOP-A34VKT1
-        public static string serverName = "DESKTOP-C145KAF";
+        public static string serverName = "LAPTOP-H6PI0HTC";
 
         public static float priceFormula(float standardPrice, char flightClass)
         {

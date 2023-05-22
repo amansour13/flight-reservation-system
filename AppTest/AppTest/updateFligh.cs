@@ -27,6 +27,11 @@ namespace AppTest
 
                 con.Open();
 
+                if ((!Program.IsStringNumeric(search.Text)))
+                {
+                    throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
+                }
+
                 int flightID = 0;
                 Int32.TryParse(search.Text, out flightID) ;
 
@@ -45,6 +50,7 @@ namespace AppTest
                     destinationText.Text = reader["DESTINATION"].ToString();
                     outgoing.Value = (DateTime)reader["OUTGOINGDATE"];
                     arriving.Value = (DateTime)reader["ARRIVINGDATE"];
+                    standardPriceText.Text =reader["STANDARDPRICE"].ToString();
 
                     tempID = (int)reader["FLIGHTID"];
                 }
@@ -85,6 +91,11 @@ namespace AppTest
             mainSearchPanel.Visible = false;
         }
 
+        private void updateBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void updateBtn_Click_1(object sender, EventArgs e)
         {
             try
@@ -112,8 +123,7 @@ namespace AppTest
                 int airID = 0;
                 Int32.TryParse(aircraftIdText.Text, out airID);
 
-                int standardPrice = 0;
-                Int32.TryParse(standardPriceText.Text, out standardPrice);
+                float standardPrice = float.Parse(standardPriceText.Text);
 
                 string command = "UPDATE FLIGHT SET AIRCRAFTID = '"
                         + airID + "', ADMINID = '"
@@ -122,7 +132,8 @@ namespace AppTest
                         + sourceText.Text.ToString() + "', DESTINATION = '"
                         + destinationText.Text.ToString() + "', OUTGOINGDATE = '"
                         + from + "', ARRIVINGDATE = '"
-                        + to + "' WHERE FLIGHTID = " + globalFlightID + ";";
+                        + to + "', STANDARDPRICE = " + standardPrice
+                        + " WHERE FLIGHTID = " + globalFlightID + ";";
 
                 comm = new SqlCommand(command, con);
                 comm.ExecuteNonQuery();

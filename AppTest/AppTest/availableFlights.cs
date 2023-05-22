@@ -210,6 +210,7 @@ namespace AppTest
                 char c = comboBox4.Text[0];
 
                 string price = Program.priceFormula(std, c).ToString();
+
                 f.setData(flightsRow["FLIGHTID"].ToString(), flightsRow["SEATSNUMBER"].ToString()
                 , comboBox4.Text, flightsRow["DESTINATION"].ToString()
                 , flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString()

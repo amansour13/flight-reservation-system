@@ -347,12 +347,18 @@ namespace AppTest
                     f.space.BringToFront();
                     panel1.Controls.Add(f.main);
                     f.main.BringToFront();
+
+                    float std = float.Parse(flightsRow["STANDARDPRICE"].ToString());
+                    char c = char.Parse(bookingsRow["CLASS"].ToString());
+
+                    string price = Program.priceFormula(std, c).ToString();
+
                     f.setData(flightsRow["FLIGHTID"].ToString(), bookingsRow["SEATNUMBER"].ToString(),
                         bookingsRow["CLASS"].ToString(), bookingsRow["STATE"].ToString(),
                         flightsRow["DESTINATION"].ToString(),
                         flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString(),
                         flightsRow["ARRIVINGDATE"].ToString(),
-                        bookingsRow["PRICE"].ToString());
+                        price);
                 }
 
 
