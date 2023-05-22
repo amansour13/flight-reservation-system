@@ -99,7 +99,7 @@ namespace AppTest
 
                 DataRow row = Program.CustomerData.Rows[0];
 
-                if (!(Program.IsStringNumeric(aircraftIdText.Text)) || (!Program.IsStringNumeric(seatsNumText.Text)))
+                if ((!Program.IsStringNumeric(aircraftIdText.Text)) || (!Program.IsStringNumeric(seatsNumText.Text)) || (!Program.IsStringNumeric(standardPriceText.Text)))
                 {
                     throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
                 }
@@ -111,6 +111,9 @@ namespace AppTest
 
                 int airID = 0;
                 Int32.TryParse(aircraftIdText.Text, out airID);
+
+                int standardPrice = 0;
+                Int32.TryParse(standardPriceText.Text, out standardPrice);
 
                 string command = "UPDATE FLIGHT SET AIRCRAFTID = '"
                         + airID + "', ADMINID = '"

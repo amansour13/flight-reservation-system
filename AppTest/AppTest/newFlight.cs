@@ -32,9 +32,14 @@ namespace AppTest
                 string to = arriving.Value.Year + "-" + arriving.Value.Month + "-" + arriving.Value.Day + " " + arriving.Value.Hour + ":" + arriving.Value.Minute + ":00";
 
 
-                if ((!Program.IsStringNumeric(aircraftIdText.Text)) || (!Program.IsStringNumeric(seatsNumText.Text)))
+                if ((!Program.IsStringNumeric(aircraftIdText.Text)) || (!Program.IsStringNumeric(seatsNumText.Text)) || (!Program.IsStringNumeric(standardPriceText.Text)))
                 {
                     throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
+                }
+
+                if (outgoing.Value > arriving.Value)
+                {
+                    throw new Exception("ERROR : OutGoing Date is after Arriving Date\nrecheck two dates");
                 }
 
                 int aircraftID = 0;
@@ -42,6 +47,9 @@ namespace AppTest
 
                 int seatsNum = 0;
                 Int32.TryParse(seatsNumText.Text, out seatsNum);
+
+                int standardPrice = 0;
+                Int32.TryParse(standardPriceText.Text, out standardPrice);
 
                 DataRow row = Program.CustomerData.Rows[0];
 
@@ -51,6 +59,7 @@ namespace AppTest
                         + ", '" + destinationText.Text + "'"
                         + ", '" + from + "'"
                         + ", '" + to + "'"
+                        + ", '" + standardPrice + "'"
                         + ")";
                 comm = new SqlCommand(command, con);
 
@@ -64,6 +73,7 @@ namespace AppTest
                 seatsNumText.Text = "";
                 sourceText.Text = "";
                 destinationText.Text = "";
+                standardPriceText.Text = "";
                 outgoing.Value = DateTime.Now;
                 arriving.Value = DateTime.Now;
 

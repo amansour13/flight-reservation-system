@@ -209,7 +209,7 @@ namespace AppTest
                 float std = float.Parse(flightsRow["STANDARDPRICE"].ToString());
                 char c = comboBox4.Text[0];
 
-                string price = priceFormula(std, c).ToString();
+                string price = Program.priceFormula(std, c).ToString();
                 f.setData(flightsRow["FLIGHTID"].ToString(), flightsRow["SEATSNUMBER"].ToString()
                 , comboBox4.Text, flightsRow["DESTINATION"].ToString()
                 , flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString()
@@ -225,22 +225,6 @@ namespace AppTest
 
             reader.Close();
             con.Close();
-        }
-
-        // Remove befor push
-        public float priceFormula(float standardPrice, char flightClass)
-        {
-            float newPrice = standardPrice;
-            if (flightClass == 'A')
-            {
-                newPrice += 100;
-            }
-            else if (flightClass == 'B')
-            {
-                newPrice += 50;
-            }
-
-            return newPrice;
         }
     }
 }
