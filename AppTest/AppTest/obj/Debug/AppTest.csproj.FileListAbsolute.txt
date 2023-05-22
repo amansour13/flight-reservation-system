@@ -74,3 +74,9 @@ D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTes
 C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.availableFlights.resources
 C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.profile.resources
 C:\Users\karim\Desktop\College\Second Year\Second Semester\Database\project\repo\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.yourFlights.resources
+D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.adminForm.resources
+D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.adminProfile.resources
+D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.newAircraft.resources
+D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.newFlight.resources
+D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.updateAircraft.resources
+D:\Ahmed\database\projectImplementation\flight-reservation-system\AppTest\AppTest\obj\Debug\AppTest.updateFligh.resources

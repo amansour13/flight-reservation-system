@@ -63,6 +63,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminForm.Designer.cs">
+      <DependentUpon>adminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminProfile.Designer.cs">
+      <DependentUpon>adminProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="availableFlights.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +98,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="newAircraft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newAircraft.Designer.cs">
+      <DependentUpon>newAircraft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newFlight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newFlight.Designer.cs">
+      <DependentUpon>newFlight.cs</DependentUpon>
+    </Compile>
     <Compile Include="profile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,12 +124,30 @@
     <Compile Include="signUpForm.Designer.cs">
       <DependentUpon>signUpForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="updateAircraft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateAircraft.Designer.cs">
+      <DependentUpon>updateAircraft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="updateFligh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateFligh.Designer.cs">
+      <DependentUpon>updateFligh.cs</DependentUpon>
+    </Compile>
     <Compile Include="yourFlights.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="yourFlights.Designer.cs">
       <DependentUpon>yourFlights.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="adminForm.resx">
+      <DependentUpon>adminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminProfile.resx">
+      <DependentUpon>adminProfile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="availableFlights.resx">
       <DependentUpon>availableFlights.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newAircraft.resx">
+      <DependentUpon>newAircraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newFlight.resx">
+      <DependentUpon>newFlight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="profile.resx">
       <DependentUpon>profile.cs</DependentUpon>
@@ -130,6 +178,12 @@
     </Compile>
     <EmbeddedResource Include="signUpForm.resx">
       <DependentUpon>signUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="updateAircraft.resx">
+      <DependentUpon>updateAircraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="updateFligh.resx">
+      <DependentUpon>updateFligh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="yourFlights.resx">
       <DependentUpon>yourFlights.cs</DependentUpon>

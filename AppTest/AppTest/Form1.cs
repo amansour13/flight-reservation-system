@@ -65,7 +65,7 @@ namespace AppTest
             // LAPTOP-H6PI0HTC
             // DESKTOP-C145KAF
             // DESKTOP-A34VKT1
-            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
             
             con.Open();
 
@@ -74,7 +74,7 @@ namespace AppTest
            
             if (checkBox1.Checked)
             {
-                string command = "SELECT ADMINID FROM ADMIN WHERE CONVERT(nvarchar(MAX), AMAIL) = '" +
+                string command = "SELECT * FROM ADMIN WHERE CONVERT(nvarchar(MAX), AMAIL) = '" +
                                  textBox1.Text + "' AND CONVERT(nvarchar(MAX), APASSWORD) = '" +
                                  textBox2.Text + "'";
                 SqlCommand comm = new SqlCommand(command, con);
@@ -82,16 +82,18 @@ namespace AppTest
 
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        // what happens if the user enters valid ceredentails
-                        continue;
-                    }
-                    
+                    Program.CustomerData.Load(reader);
+                    adminForm aForm = new adminForm();
+
+                    this.Hide();
+
+                    aForm.ShowDialog();
+
+                    this.Close();
+
                 }
                 else
                 {
-                    // what happens if the user enters invalid credentials
                     invalid.Text = "* inavlid Ceredentials";
                 }
 

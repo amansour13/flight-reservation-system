@@ -18,7 +18,7 @@ namespace AppTest
         {
             InitializeComponent();
 
-            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
 
             con.Open();
 
@@ -45,52 +45,18 @@ namespace AppTest
         }
         // private SqlDataReader CustomerData { get; set; }
         private void CustomerPanel_Paint(object sender, PaintEventArgs e)
-        {
-            /*string command = "SELECT * FROM CUSTOMER WHERE CONVERT(nvarchar(MAX), CMAIL) = '" +
-                                 textBox1.Text + "' AND CONVERT(nvarchar(MAX), CPASSWORD) = '" +
-                                 textBox2.Text + "'";
-            SqlCommand comm = new SqlCommand(command, con);
-            SqlDataReader reader = comm.ExecuteReader();
-
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-
-                    customerForm cForm = new customerForm();
-                    cForm.CustomerData = reader;
-
-                    this.Hide();
-
-                    cForm.ShowDialog();
-
-                    this.Close();
-                }
-
-            }
-            else
-            {
-                invalid.Text = "* inavlid Ceredentials";
-            }
-
-            reader.Close();*/
-            
+        {        
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
 
             con.Open();
 
             SqlCommand comm;
             DataRow row = Program.CustomerData.Rows[0];
-            // CustomerData["CFNAME"] = "SSSS";
 
-            /*UPDATE CUSTOMER
-            SET SSN = 5, CFNAME = 'AYMAN', CLNAME = 'ABOU', CPASSWORD = '12',
-            BIRTHDATE = '2003-04-07', CMAIL = 'ayman@gmail.com'
-            where SSN = 1;*/
             int SSN = 0;
             Int32.TryParse(SSNTextBox.Text, out SSN);
 
@@ -113,10 +79,7 @@ namespace AppTest
             //}
             reader.Close();
             con.Close();
-
-            string message = "Profile Information Updated";
-            string title = "Success";
-            MessageBox.Show(message, title);
         }
+        
     }
 }

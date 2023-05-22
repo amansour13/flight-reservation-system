@@ -47,7 +47,7 @@ namespace AppTest
             // LAPTOP-H6PI0HTC
             // DESKTOP-C145KAF
             // DESKTOP - A34VKT1
-            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
 
             con.Open();
 

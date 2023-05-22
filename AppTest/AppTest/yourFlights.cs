@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 namespace AppTest
 {
-    
+
     public partial class yourFlights : Form
     {
         public class flightsDetails
@@ -35,8 +35,22 @@ namespace AppTest
 
             public Button changeClass = new Button();
             public Button cancelFlight = new Button();
-            public flightsDetails()
+            public Button chooseClass = new Button();
+
+
+
+            public ComboBox flightClassList = new ComboBox();
+
+            private yourFlights yourFlight;
+            public flightsDetails(yourFlights yourFlight)
             {
+                this.yourFlight = yourFlight;
+
+                changeClass.Click += new EventHandler(changeClassClick);
+                chooseClass.Click += new EventHandler(chooseClassClick);
+                cancelFlight.Click += new EventHandler(cancelFlightClick);
+
+
                 space.Dock = DockStyle.Top;
                 space.BackColor = Color.FromArgb(25, 11, 35);
                 space.Height = 20;
@@ -49,13 +63,13 @@ namespace AppTest
                 addingcenterContent();
 
                 addingbottomContent();
-                
+
                 main.BackColor = Color.FromArgb(25, 11, 35);
 
                 main.Controls.Add(head);
                 main.Controls.Add(center);
                 main.Controls.Add(bottom);
-                
+
                 head.BringToFront();
                 center.BringToFront();
                 bottom.BringToFront();
@@ -66,6 +80,9 @@ namespace AppTest
 
             private void addingheadContent()
             {
+                flightClassList.Items.Add("A");
+                flightClassList.Items.Add("B");
+                flightClassList.Items.Add("C");
                 head.Dock = DockStyle.Top;
                 head.Height = 30;
 
@@ -76,6 +93,7 @@ namespace AppTest
 
                 flightid.Dock = DockStyle.Left;
                 seatNumber.Dock = DockStyle.Left;
+                flightClassList.Dock = DockStyle.Left;
                 flightClass.Dock = DockStyle.Left;
                 state.Dock = DockStyle.Left;
 
@@ -84,12 +102,14 @@ namespace AppTest
                 flightClass.ForeColor = Color.White;
                 state.ForeColor = Color.White;
 
-                head.Padding = new Padding(20,5,5,5);
+                head.Padding = new Padding(20, 5, 5, 5);
 
+                head.Controls.Add(flightClass);
                 head.Controls.Add(flightid);
                 head.Controls.Add(seatNumber);
-                head.Controls.Add(flightClass);
+
                 head.Controls.Add(state);
+
             }
 
             private void addingcenterContent()
@@ -138,6 +158,12 @@ namespace AppTest
                 changeClass.BackColor = Color.FromArgb(204, 51, 102);
                 changeClass.FlatStyle = FlatStyle.Flat;
 
+                chooseClass.Text = "Choose Class";
+                chooseClass.Height = 45;
+                chooseClass.Width = 332;
+                chooseClass.BackColor = Color.FromArgb(204, 51, 102);
+                chooseClass.FlatStyle = FlatStyle.Flat;
+
                 cancelFlight.Text = "Cancel Flight";
                 cancelFlight.Height = 45;
                 cancelFlight.Width = 332;
@@ -146,6 +172,7 @@ namespace AppTest
 
                 changeClass.Dock = DockStyle.Left;
                 cancelFlight.Dock = DockStyle.Left;
+                chooseClass.Dock = DockStyle.Left;
 
 
                 bottom.Padding = new Padding(5);
@@ -154,7 +181,8 @@ namespace AppTest
                 bottom.Controls.Add(cancelFlight);
             }
 
-            public void setData(string flightId, string seatNumber, string flightClass, string state, string to, string from, string outgoing, string arriving, string price) {
+            public void setData(string flightId, string seatNumber, string flightClass, string state, string to, string from, string outgoing, string arriving, string price)
+            {
                 this.flightid.Text += flightId;  //flight
                 this.seatNumber.Text += seatNumber;  //booking
                 this.flightClass.Text += flightClass;  // booking
@@ -165,16 +193,105 @@ namespace AppTest
                 this.outgoingDate.Text += outgoing;  //flight
                 this.arrivingDate.Text += arriving;  //flight
             }
+
+            private void changeClassClick(object sender, EventArgs e)
+            {
+                head.Controls.Add(flightClassList);
+                flightClassList.BringToFront();
+
+                changeClass.Hide();
+                bottom.Controls.Add(chooseClass);
+                chooseClass.BringToFront();
+
+            }
+
+            private void chooseClassClick(object sender, EventArgs e)
+            {
+                SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+
+                con.Open();
+
+                DataRow row = Program.CustomerData.Rows[0];
+
+                SqlCommand comm;
+
+                int flightIDInt = 0;
+                Int32.TryParse(flightid.Text.Substring(12), out flightIDInt);
+
+                int seatNumberInt = 0;
+                Int32.TryParse(seatNumber.Text.Substring(14), out seatNumberInt);
+
+
+                string command = "UPDATE BOOKING SET CLASS = '" + flightClassList.Text
+                    + "' WHERE SSN = " + (int)row["SSN"] + " AND FLIGHTID = " + flightIDInt
+                    + " AND SEATNUMBER = " + seatNumberInt;
+                comm = new SqlCommand(command, con);
+                comm.ExecuteNonQuery();
+
+                con.Close();
+
+                string message = "Class Changed Successfuly";
+                string title = "Success";
+                MessageBox.Show(message, title);
+
+                yourFlight.Controls.Clear();
+
+
+                yourFlight.InitializeComponent();
+                yourFlight.yourFlights_Load(sender, e);
+
+            }
+
+            private void cancelFlightClick(object sender, EventArgs e)
+            {
+                string message = "Are you sure you want to cancel this flight?";
+                string title = "Cancel Flight";
+                DialogResult dialogResult = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
+
+                    con.Open();
+
+                    DataRow row = Program.CustomerData.Rows[0];
+
+                    SqlCommand comm;
+
+                    int flightIDInt = 0;
+                    Int32.TryParse(flightid.Text.Substring(12), out flightIDInt);
+
+                    int seatNumberInt = 0;
+                    Int32.TryParse(seatNumber.Text.Substring(14), out seatNumberInt);
+
+
+                    string command = "DELETE FROM BOOKING WHERE SSN = "
+                        + (int)row["SSN"] + " AND FLIGHTID = " + flightIDInt
+                        + " AND SEATNUMBER = " + seatNumberInt;
+                    comm = new SqlCommand(command, con);
+                    comm.ExecuteNonQuery();
+
+                    con.Close();
+
+                    yourFlight.Controls.Clear();
+                    yourFlight.InitializeComponent();
+                    yourFlight.yourFlights_Load(sender, e);
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                }
+            }
         }
         public yourFlights()
         {
             InitializeComponent();
         }
 
-        private void yourFlights_Load(object sender, EventArgs e)
+        public void yourFlights_Load(object sender, EventArgs e)
         {
 
-            SqlConnection con = new SqlConnection(@"Data Source = LAPTOP-H6PI0HTC; Initial Catalog = FlightReservation; Integrated Security =True");
+            SqlConnection con = new SqlConnection(@"Data Source = DESKTOP-C145KAF; Initial Catalog = FlightReservation; Integrated Security =True");
 
             con.Open();
             DataTable flights = new DataTable();
@@ -205,7 +322,7 @@ namespace AppTest
                 flightsRow = flights.Rows[i];
                 bookingsRow = bookings.Rows[i];
 
-                flightsDetails f = new flightsDetails();
+                flightsDetails f = new flightsDetails(this);
                 panel1.Controls.Add(f.space);
                 f.space.BringToFront();
                 panel1.Controls.Add(f.main);
@@ -217,10 +334,14 @@ namespace AppTest
                     flightsRow["ARRIVINGDATE"].ToString(),
                     bookingsRow["PRICE"].ToString());
             }
-            
+
 
             reader.Close();
             con.Close();
         }
+
+
     }
+
+
 }
