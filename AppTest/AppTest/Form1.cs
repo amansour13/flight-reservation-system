@@ -62,73 +62,78 @@ namespace AppTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // LAPTOP-H6PI0HTC
-            // DESKTOP-C145KAF
-            // DESKTOP-A34VKT1
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
-            
-            con.Open();
-
-
-
-           
-            if (checkBox1.Checked)
+            try
             {
-                string command = "SELECT * FROM ADMIN WHERE CONVERT(nvarchar(MAX), AMAIL) = '" +
-                                 textBox1.Text + "' AND CONVERT(nvarchar(MAX), APASSWORD) = '" +
-                                 textBox2.Text + "'";
-                SqlCommand comm = new SqlCommand(command, con);
-                SqlDataReader reader = comm.ExecuteReader();
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-                if (reader.HasRows)
+                con.Open();
+
+                if (checkBox1.Checked)
                 {
-                    Program.CustomerData.Load(reader);
-                    adminForm aForm = new adminForm();
+                    string command = "SELECT * FROM ADMIN WHERE CONVERT(nvarchar(MAX), AMAIL) = '" +
+                                     textBox1.Text + "' AND CONVERT(nvarchar(MAX), APASSWORD) = '" +
+                                     textBox2.Text + "'";
+                    SqlCommand comm = new SqlCommand(command, con);
+                    SqlDataReader reader = comm.ExecuteReader();
 
-                    this.Hide();
+                    if (reader.HasRows)
+                    {
+                        Program.CustomerData.Load(reader);
+                        adminForm aForm = new adminForm();
 
-                    aForm.ShowDialog();
+                        this.Hide();
 
-                    this.Close();
+                        aForm.ShowDialog();
 
+                        this.Close();
+
+                    }
+                    else
+                    {
+                        invalid.Text = "* inavlid Ceredentials";
+                    }
+
+                    reader.Close();
                 }
                 else
                 {
-                    invalid.Text = "* inavlid Ceredentials";
+                    string command = "SELECT * FROM CUSTOMER WHERE CONVERT(nvarchar(MAX), CMAIL) = '" +
+                                     textBox1.Text + "' AND CONVERT(nvarchar(MAX), CPASSWORD) = '" +
+                                     textBox2.Text + "'";
+                    SqlCommand comm = new SqlCommand(command, con);
+                    SqlDataReader reader = comm.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+
+                        Program.CustomerData.Load(reader);
+                        customerForm cForm = new customerForm();
+
+                        this.Hide();
+
+                        cForm.ShowDialog();
+
+                        this.Close();
+
+                    }
+                    else
+                    {
+                        invalid.Text = "* inavlid Ceredentials";
+                    }
+
+                    reader.Close();
                 }
 
-                reader.Close();
+                con.Close();
             }
-            else
+            catch (Exception ex)
             {
-                string command = "SELECT * FROM CUSTOMER WHERE CONVERT(nvarchar(MAX), CMAIL) = '" +
-                                 textBox1.Text + "' AND CONVERT(nvarchar(MAX), CPASSWORD) = '" +
-                                 textBox2.Text + "'";
-                SqlCommand comm = new SqlCommand(command, con);
-                SqlDataReader reader = comm.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-
-                    Program.CustomerData.Load(reader);
-                    customerForm cForm = new customerForm();
-
-                    this.Hide();
-
-                    cForm.ShowDialog();
-
-                    this.Close();
-
-                }
-                else
-                {
-                    invalid.Text = "* inavlid Ceredentials";
-                }
-
-                reader.Close();
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
             }
 
-            con.Close();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

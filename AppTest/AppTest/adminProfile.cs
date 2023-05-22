@@ -15,61 +15,81 @@ namespace AppTest
     {
         public adminProfile()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
 
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-            con.Open();
-            
-            DataRow rowTemp = Program.CustomerData.Rows[0];
-            
-            
-            string updateCommand = "SELECT * FROM ADMIN WHERE ADMINID = " + (int)rowTemp["ADMINID"];
+                con.Open();
 
-            SqlCommand updatComm = new SqlCommand(updateCommand, con);
-            SqlDataReader reader = updatComm.ExecuteReader();
+                DataRow rowTemp = Program.CustomerData.Rows[0];
 
-            Program.CustomerData.Load(reader);
 
-            DataRow row = Program.CustomerData.Rows[0];
+                string updateCommand = "SELECT * FROM ADMIN WHERE ADMINID = " + (int)rowTemp["ADMINID"];
 
-            firstNameText.Text = (string)row["AFNAME"];
-            lastNameText.Text = (string)row["ALNAME"];
-            emailText.Text = (string)row["AMAIL"];
-            passwordText.Text = (string)row["APASSWORD"];
+                SqlCommand updatComm = new SqlCommand(updateCommand, con);
+                SqlDataReader reader = updatComm.ExecuteReader();
 
-            reader.Close();
-            con.Close();
+                Program.CustomerData.Load(reader);
+
+                DataRow row = Program.CustomerData.Rows[0];
+
+                firstNameText.Text = (string)row["AFNAME"];
+                lastNameText.Text = (string)row["ALNAME"];
+                emailText.Text = (string)row["AMAIL"];
+                passwordText.Text = (string)row["APASSWORD"];
+
+                reader.Close();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
+            }
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+            try
+            {
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-            con.Open();
+                con.Open();
 
-            SqlCommand comm;
-            DataRow row = Program.CustomerData.Rows[0];
+                SqlCommand comm;
+                DataRow row = Program.CustomerData.Rows[0];
 
-            string command = "UPDATE ADMIN SET AFNAME = '"
-                    + firstNameText.Text.ToString() + "', ALNAME = '"
-                    + lastNameText.Text.ToString() + "', APASSWORD = '"
-                    + passwordText.Text.ToString() + "', AMAIL = '"
-                    + emailText.Text.ToString() + "' WHERE ADMINID = " + (int)row["ADMINID"] + ";";
+                string command = "UPDATE ADMIN SET AFNAME = '"
+                        + firstNameText.Text.ToString() + "', ALNAME = '"
+                        + lastNameText.Text.ToString() + "', APASSWORD = '"
+                        + passwordText.Text.ToString() + "', AMAIL = '"
+                        + emailText.Text.ToString() + "' WHERE ADMINID = " + (int)row["ADMINID"] + ";";
 
-            comm = new SqlCommand(command, con);
-            comm.ExecuteNonQuery();
+                comm = new SqlCommand(command, con);
+                comm.ExecuteNonQuery();
 
-            string updateCommand = "SELECT * FROM ADMIN WHERE ADMINID = " + (int)row["ADMINID"];
-            SqlCommand updatComm = new SqlCommand(updateCommand, con);
-            SqlDataReader reader = updatComm.ExecuteReader();
+                string updateCommand = "SELECT * FROM ADMIN WHERE ADMINID = " + (int)row["ADMINID"];
+                SqlCommand updatComm = new SqlCommand(updateCommand, con);
+                SqlDataReader reader = updatComm.ExecuteReader();
 
-            Program.CustomerData.Rows.Clear();
-            Program.CustomerData.Load(reader);
+                Program.CustomerData.Rows.Clear();
+                Program.CustomerData.Load(reader);
 
-            reader.Close();
-            con.Close();
+                reader.Close();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
+            }
         }
     }
 }

@@ -15,6 +15,33 @@ namespace AppTest
         // DESKTOP-A34VKT1
         public static string serverName = "DESKTOP-C145KAF";
 
+        public static float priceFormula(float standardPrice, char flightClass)
+        {
+            float newPrice = standardPrice;
+            if (flightClass == 'A')
+            {
+                newPrice += 100;
+            }
+            else if (flightClass == 'B')
+            {
+                newPrice += 50;
+            }
+
+            return newPrice;
+        }
+
+        public static bool IsStringNumeric(string input)
+        {
+            foreach (char c in input)
+            {
+                if (!Char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         public static DataTable CustomerData = new DataTable("CUSTOMER");
         /// <summary>

@@ -17,31 +17,40 @@ namespace AppTest
         public profile()
         {
             InitializeComponent();
+            try
+            {
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+                con.Open();
 
-            con.Open();
+                int SSN = 0;
+                Int32.TryParse(SSNTextBox.Text, out SSN);
 
-            int SSN = 0;
-            Int32.TryParse(SSNTextBox.Text, out SSN);
+                string updateCommand = "SELECT * FROM CUSTOMER WHERE SSN = " + SSN;
+                SqlCommand updatComm = new SqlCommand(updateCommand, con);
+                SqlDataReader reader = updatComm.ExecuteReader();
 
-            string updateCommand = "SELECT * FROM CUSTOMER WHERE SSN = " + SSN;
-            SqlCommand updatComm = new SqlCommand(updateCommand, con);
-            SqlDataReader reader = updatComm.ExecuteReader();
-           
-            Program.CustomerData.Load(reader); 
-            
-            DataRow row = Program.CustomerData.Rows[0];
+                Program.CustomerData.Load(reader);
 
-            firstNameText.Text = (string)row["CFNAME"];
-            lastNameText.Text = (string)row["CLNAME"];
-            emailText.Text = (string)row["CMAIL"];
-            passwordText.Text = (string)row["CPASSWORD"];
-            SSNTextBox.Text = row["SSN"].ToString();
-            customerBirthDate.Text = row["BIRTHDATE"].ToString();
+                DataRow row = Program.CustomerData.Rows[0];
 
-            reader.Close();
-            con.Close();
+                firstNameText.Text = (string)row["CFNAME"];
+                lastNameText.Text = (string)row["CLNAME"];
+                emailText.Text = (string)row["CMAIL"];
+                passwordText.Text = (string)row["CPASSWORD"];
+                SSNTextBox.Text = row["SSN"].ToString();
+                customerBirthDate.Text = row["BIRTHDATE"].ToString();
+
+                reader.Close();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
+            }
         }
         // private SqlDataReader CustomerData { get; set; }
         private void CustomerPanel_Paint(object sender, PaintEventArgs e)
@@ -50,35 +59,55 @@ namespace AppTest
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+            try
+            {
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-            con.Open();
+                con.Open();
 
-            SqlCommand comm;
-            DataRow row = Program.CustomerData.Rows[0];
+                if ((!Program.IsStringNumeric(SSNTextBox.Text)))
+                {
+                    throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
+                }
 
-            int SSN = 0;
-            Int32.TryParse(SSNTextBox.Text, out SSN);
+                if (customerBirthDate.Value > DateTime.Now)
+                {
+                    throw new Exception("ERROR : can not add Birthdate after today");
+                }
 
-            string command = "UPDATE CUSTOMER SET SSN = " + SSN + ", CFNAME = '"
-                    + firstNameText.Text.ToString() + "', CLNAME = '"
-                    + lastNameText.Text.ToString() + "', CPASSWORD = '"
-                    + passwordText.Text.ToString() + "', BIRTHDATE = '"
-                    + customerBirthDate.Value + "', CMAIL = '"
-                    + emailText.Text.ToString() + "' WHERE SSN = " + (int)row["SSN"] + ";";
-            comm = new SqlCommand(command, con);
-            comm.ExecuteNonQuery();
+                SqlCommand comm;
+                DataRow row = Program.CustomerData.Rows[0];
 
-            string updateCommand = "SELECT * FROM CUSTOMER WHERE SSN = " + SSN;
-            SqlCommand updatComm = new SqlCommand(updateCommand, con);
-            SqlDataReader reader = updatComm.ExecuteReader();
-            /*while (reader.Read())
-            {*/
-            Program.CustomerData.Rows.Clear();
-            Program.CustomerData.Load(reader);
-            //}
-            reader.Close();
-            con.Close();
+                int SSN = 0;
+                Int32.TryParse(SSNTextBox.Text, out SSN);
+
+                string command = "UPDATE CUSTOMER SET SSN = " + SSN + ", CFNAME = '"
+                        + firstNameText.Text.ToString() + "', CLNAME = '"
+                        + lastNameText.Text.ToString() + "', CPASSWORD = '"
+                        + passwordText.Text.ToString() + "', BIRTHDATE = '"
+                        + customerBirthDate.Value + "', CMAIL = '"
+                        + emailText.Text.ToString() + "' WHERE SSN = " + (int)row["SSN"] + ";";
+                comm = new SqlCommand(command, con);
+                comm.ExecuteNonQuery();
+
+                string updateCommand = "SELECT * FROM CUSTOMER WHERE SSN = " + SSN;
+                SqlCommand updatComm = new SqlCommand(updateCommand, con);
+                SqlDataReader reader = updatComm.ExecuteReader();
+                /*while (reader.Read())
+                {*/
+                Program.CustomerData.Rows.Clear();
+                Program.CustomerData.Load(reader);
+                //}
+                reader.Close();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
+            }
         }
         
     }

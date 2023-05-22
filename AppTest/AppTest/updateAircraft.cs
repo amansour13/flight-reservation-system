@@ -25,72 +25,95 @@ namespace AppTest
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
-
-            con.Open();
-
-            int aircraftID = 0;
-            Int32.TryParse(search.Text, out aircraftID);
-
-            string updateCommand = "SELECT * FROM AIRCRAFT WHERE AIRCRAFTID = " + aircraftID;
-            SqlCommand updatComm = new SqlCommand(updateCommand, con);
-            SqlDataReader reader = updatComm.ExecuteReader();
-
-            
-
-            int tempID = 0;
-            while (reader.Read())
+            try
             {
-                capacityText.Text = reader["CAPACITY"].ToString();
-                manfactText.Text = reader["MANFACTURER"].ToString();
-                distanceText.Text = reader["DISTANCEALLOWED"].ToString();
-                tempID = (int)reader["AIRCRAFTID"];
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+
+                con.Open();
+
+                int aircraftID = 0;
+                Int32.TryParse(search.Text, out aircraftID);
+
+                string updateCommand = "SELECT * FROM AIRCRAFT WHERE AIRCRAFTID = " + aircraftID;
+                SqlCommand updatComm = new SqlCommand(updateCommand, con);
+                SqlDataReader reader = updatComm.ExecuteReader();
+
+
+
+                int tempID = 0;
+                while (reader.Read())
+                {
+                    capacityText.Text = reader["CAPACITY"].ToString();
+                    manfactText.Text = reader["MANFACTURER"].ToString();
+                    distanceText.Text = reader["DISTANCEALLOWED"].ToString();
+                    tempID = (int)reader["AIRCRAFTID"];
+                }
+
+                reader.Close();
+                con.Close();
+
+                if (aircraftID != tempID)
+                {
+                    string message = "Sorry this ID is NOT EXIST\n";
+                    string title = "Success";
+                    MessageBox.Show(message, title);
+                }
+                else
+                {
+                    mainSearchPanel.Visible = true;
+                    searchPanel.Visible = false;
+                    globalAircraftID = aircraftID;
+                }
             }
-
-            reader.Close();
-            con.Close();
-
-            if (aircraftID != tempID)
+            catch (Exception ex)
             {
-                string message = "Sorry this ID is NOT EXIST\n";
-                string title = "Success";
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
                 MessageBox.Show(message, title);
-            }
-            else
-            {
-                mainSearchPanel.Visible = true;
-                searchPanel.Visible = false;
-                globalAircraftID = aircraftID;
             }
         }
 
         public int globalAircraftID = new int(); 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+            try
+            {
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-            con.Open();
+                con.Open();
 
-            SqlCommand comm;
+                if (!(Program.IsStringNumeric(capacityText.Text)) || !(Program.IsStringNumeric(distanceText.Text)))
+                {
+                    throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
+                }
+                SqlCommand comm;
 
-            string command = "UPDATE AIRCRAFT SET CAPACITY = '"
-                    + capacityText.Text.ToString() + "', MANFACTURER = '"
-                    + manfactText.Text.ToString() + "', DISTANCEALLOWED = '"
-                    + distanceText.Text.ToString() + "' WHERE AIRCRAFTID = " + globalAircraftID + ";";
+                string command = "UPDATE AIRCRAFT SET CAPACITY = '"
+                        + capacityText.Text.ToString() + "', MANFACTURER = '"
+                        + manfactText.Text.ToString() + "', DISTANCEALLOWED = '"
+                        + distanceText.Text.ToString() + "' WHERE AIRCRAFTID = " + globalAircraftID + ";";
 
-            comm = new SqlCommand(command, con);
-            comm.ExecuteNonQuery();
+                comm = new SqlCommand(command, con);
+                comm.ExecuteNonQuery();
 
-            string message = "Aircraft with ID = " + globalAircraftID.ToString() + "\nUpdated Successfully\n";
-            string title = "Success";
-            MessageBox.Show(message, title);
+                string message = "Aircraft with ID = " + globalAircraftID.ToString() + "\nUpdated Successfully\n";
+                string title = "Success";
+                MessageBox.Show(message, title);
 
-            mainSearchPanel.Visible = false;
-            searchPanel.Visible = true;
-            search.Text = "";
+                mainSearchPanel.Visible = false;
+                searchPanel.Visible = true;
+                search.Text = "";
 
-            con.Close();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
+            }
         }
     }
 }

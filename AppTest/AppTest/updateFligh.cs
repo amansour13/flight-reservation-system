@@ -22,53 +22,61 @@ namespace AppTest
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+            try { 
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-            con.Open();
+                con.Open();
 
-            int flightID = 0;
-            Int32.TryParse(search.Text, out flightID) ;
+                int flightID = 0;
+                Int32.TryParse(search.Text, out flightID) ;
 
-            string updateCommand = "SELECT * FROM FLIGHT WHERE FLIGHTID = " + flightID;
-            SqlCommand updatComm = new SqlCommand(updateCommand, con);
-            SqlDataReader reader = updatComm.ExecuteReader();
+                string updateCommand = "SELECT * FROM FLIGHT WHERE FLIGHTID = " + flightID;
+                SqlCommand updatComm = new SqlCommand(updateCommand, con);
+                SqlDataReader reader = updatComm.ExecuteReader();
 
             
 
-            int tempID = 0;
-            while (reader.Read())
-            {
-                aircraftIdText.Text = reader["AIRCRAFTID"].ToString();
-                seatsNumText.Text = reader["SEATSNUMBER"].ToString();
-                sourceText.Text = reader["SOURCE"].ToString();
-                destinationText.Text = reader["DESTINATION"].ToString();
-                outgoing.Value = (DateTime)reader["OUTGOINGDATE"];
-                arriving.Value = (DateTime)reader["ARRIVINGDATE"];
+                int tempID = 0;
+                while (reader.Read())
+                {
+                    aircraftIdText.Text = reader["AIRCRAFTID"].ToString();
+                    seatsNumText.Text = reader["SEATSNUMBER"].ToString();
+                    sourceText.Text = reader["SOURCE"].ToString();
+                    destinationText.Text = reader["DESTINATION"].ToString();
+                    outgoing.Value = (DateTime)reader["OUTGOINGDATE"];
+                    arriving.Value = (DateTime)reader["ARRIVINGDATE"];
 
-                tempID = (int)reader["FLIGHTID"];
+                    tempID = (int)reader["FLIGHTID"];
+                }
+
+
+
+                reader.Close();
+                con.Close();
+
+
+                if (flightID != tempID)
+                {
+                    string message = "Sorry this ID is NOT EXIST\n";
+                    string title = "Success";
+                    MessageBox.Show(message, title);
+                }
+                else
+                {
+                    mainSearchPanel.Height = 623;
+                    mainSearchPanel.Visible = true;
+                    searchPanel.Visible = false;
+                    globalFlightID = flightID;
+                }
+
             }
-
-
-
-            reader.Close();
-            con.Close();
-
-
-            if (flightID != tempID)
+            catch (Exception ex)
             {
-                string message = "Sorry this ID is NOT EXIST\n";
-                string title = "Success";
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
                 MessageBox.Show(message, title);
             }
-            else
-            {
-                mainSearchPanel.Height = 623;
-                mainSearchPanel.Visible = true;
-                searchPanel.Visible = false;
-                globalFlightID = flightID;
-            }
-
-            
 
         }
 
@@ -79,40 +87,60 @@ namespace AppTest
 
         private void updateBtn_Click_1(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+            try
+            {
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-            con.Open();
+                con.Open();
 
-            SqlCommand comm;
-            string from = outgoing.Value.Year + "-" + outgoing.Value.Month + "-" + outgoing.Value.Day + " " + outgoing.Value.Hour + ":" + outgoing.Value.Minute + ":00";
-            string to = arriving.Value.Year + "-" + arriving.Value.Month + "-" + arriving.Value.Day + " " + arriving.Value.Hour + ":" + arriving.Value.Minute + ":00";
+                SqlCommand comm;
+                string from = outgoing.Value.Year + "-" + outgoing.Value.Month + "-" + outgoing.Value.Day + " " + outgoing.Value.Hour + ":" + outgoing.Value.Minute + ":00";
+                string to = arriving.Value.Year + "-" + arriving.Value.Month + "-" + arriving.Value.Day + " " + arriving.Value.Hour + ":" + arriving.Value.Minute + ":00";
 
-            DataRow row = Program.CustomerData.Rows[0];
+                DataRow row = Program.CustomerData.Rows[0];
 
-            int airID = 0;
-            Int32.TryParse(aircraftIdText.Text, out airID);
+                if (!(Program.IsStringNumeric(aircraftIdText.Text)) || (!Program.IsStringNumeric(seatsNumText.Text)))
+                {
+                    throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
+                }
 
-            string command = "UPDATE FLIGHT SET AIRCRAFTID = '"
-                    + airID + "', ADMINID = '"
-                    + (int)row["ADMINID"] + "', SEATSNUMBER = '"
-                    + seatsNumText.Text.ToString() + "', SOURCE = '"
-                    + sourceText.Text.ToString() + "', DESTINATION = '"
-                    + destinationText.Text.ToString() + "', OUTGOINGDATE = '"
-                    + from + "', ARRIVINGDATE = '"
-                    + to + "' WHERE FLIGHTID = " + globalFlightID + ";";
+                if (outgoing.Value > arriving.Value)
+                {
+                    throw new Exception("ERROR : OutGoing Date is after Arriving Date\nrecheck two dates");
+                }
 
-            comm = new SqlCommand(command, con);
-            comm.ExecuteNonQuery();
+                int airID = 0;
+                Int32.TryParse(aircraftIdText.Text, out airID);
 
-            string message = "Flight with ID = " + globalFlightID.ToString() + "\nUpdated Successfully\n";
-            string title = "Success";
-            MessageBox.Show(message, title);
+                string command = "UPDATE FLIGHT SET AIRCRAFTID = '"
+                        + airID + "', ADMINID = '"
+                        + (int)row["ADMINID"] + "', SEATSNUMBER = '"
+                        + seatsNumText.Text.ToString() + "', SOURCE = '"
+                        + sourceText.Text.ToString() + "', DESTINATION = '"
+                        + destinationText.Text.ToString() + "', OUTGOINGDATE = '"
+                        + from + "', ARRIVINGDATE = '"
+                        + to + "' WHERE FLIGHTID = " + globalFlightID + ";";
 
-            mainSearchPanel.Visible = false;
-            searchPanel.Visible = true;
-            search.Text = "";
+                comm = new SqlCommand(command, con);
+                comm.ExecuteNonQuery();
 
-            con.Close();
+                string message = "Flight with ID = " + globalFlightID.ToString() + "\nUpdated Successfully\n";
+                string title = "Success";
+                MessageBox.Show(message, title);
+
+                mainSearchPanel.Visible = false;
+                searchPanel.Visible = true;
+                search.Text = "";
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
+            }
         }
     }
 }

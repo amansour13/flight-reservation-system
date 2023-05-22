@@ -44,52 +44,68 @@ namespace AppTest
 
         private void signUpButton_Click(object sender, EventArgs e)
         {
-            // LAPTOP-H6PI0HTC
-            // DESKTOP-C145KAF
-            // DESKTOP - A34VKT1
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
-
-            con.Open();
-
-            SqlCommand comm;
-
-            if (adminCheckbox.Checked)
+            try
             {
-                string command = "Insert Into ADMIN VALUES('" + firstNameText.Text.ToString() + "','" 
-                    + lastNameText.Text.ToString()
-                    + "','" + emailText.Text.ToString() + "','" 
-                    + passwordText.Text.ToString() + "')" ;
-                 comm = new SqlCommand(command, con);
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+
+                con.Open();
+
+                SqlCommand comm;
+
+                if (adminCheckbox.Checked)
+                {
+                    string command = "Insert Into ADMIN VALUES('" + firstNameText.Text.ToString() + "','"
+                        + lastNameText.Text.ToString()
+                        + "','" + emailText.Text.ToString() + "','"
+                        + passwordText.Text.ToString() + "')";
+                    comm = new SqlCommand(command, con);
+                }
+                else
+                {
+                    if ((!Program.IsStringNumeric(SSNTextBox.Text)))
+                    {
+                        throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
+                    }
+
+                    if (customerBirthDate.Value > DateTime.Now)
+                    {
+                        throw new Exception("ERROR : can not add Birthdate after today");
+                    }
+
+                    int SSN = 0;
+                    Int32.TryParse(SSNTextBox.Text, out SSN);
+
+                    string command = "Insert Into CUSTOMER VALUES('"
+                        + SSN + "','"
+                        + firstNameText.Text.ToString() + "','"
+                        + lastNameText.Text.ToString() + "','"
+                        + passwordText.Text.ToString() + "','"
+                        + customerBirthDate.Value + "','"
+                        + emailText.Text.ToString() + "')";
+                    comm = new SqlCommand(command, con);
+                }
+
+                comm.ExecuteNonQuery();
+
+                string message = "Sign Up Successful \n you can now log in";
+                string title = "Success";
+                MessageBox.Show(message, title);
+
+                LoginPage logIn = new LoginPage();
+
+                this.Hide();
+                logIn.ShowDialog();
+                this.Close();
+
+                con.Close();
             }
-            else
+            catch (Exception ex)
             {
-                int SSN = 0;
-                Int32.TryParse(SSNTextBox.Text, out SSN);
-
-                string command = "Insert Into CUSTOMER VALUES('"
-                    + SSN + "','"
-                    + firstNameText.Text.ToString() + "','"
-                    + lastNameText.Text.ToString() + "','"
-                    + passwordText.Text.ToString() + "','"
-                    + customerBirthDate.Value + "','"
-                    + emailText.Text.ToString() + "')";
-                 comm = new SqlCommand(command, con);
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
             }
-
-            comm.ExecuteNonQuery();
-
-            string message = "Sign Up Successful \n you can now log in";
-            string title = "Success";
-            MessageBox.Show(message, title);
-
-            LoginPage logIn = new LoginPage();
-
-            this.Hide();
-            logIn.ShowDialog();
-            this.Close();
-
-            con.Close();
-
         }
 
         private void customerBirthDate_ValueChanged(object sender, EventArgs e)

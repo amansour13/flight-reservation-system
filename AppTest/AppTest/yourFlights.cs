@@ -207,48 +207,7 @@ namespace AppTest
 
             private void chooseClassClick(object sender, EventArgs e)
             {
-                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
-
-                con.Open();
-
-                DataRow row = Program.CustomerData.Rows[0];
-
-                SqlCommand comm;
-
-                int flightIDInt = 0;
-                Int32.TryParse(flightid.Text.Substring(12), out flightIDInt);
-
-                int seatNumberInt = 0;
-                Int32.TryParse(seatNumber.Text.Substring(14), out seatNumberInt);
-
-
-                string command = "UPDATE BOOKING SET CLASS = '" + flightClassList.Text
-                    + "' WHERE SSN = " + (int)row["SSN"] + " AND FLIGHTID = " + flightIDInt
-                    + " AND SEATNUMBER = " + seatNumberInt;
-                comm = new SqlCommand(command, con);
-                comm.ExecuteNonQuery();
-
-                con.Close();
-
-                string message = "Class Changed Successfuly";
-                string title = "Success";
-                MessageBox.Show(message, title);
-
-                yourFlight.Controls.Clear();
-
-
-                yourFlight.InitializeComponent();
-                yourFlight.yourFlights_Load(sender, e);
-
-            }
-
-            private void cancelFlightClick(object sender, EventArgs e)
-            {
-                string message = "Are you sure you want to cancel this flight?";
-                string title = "Cancel Flight";
-                DialogResult dialogResult = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
-
-                if (dialogResult == DialogResult.Yes)
+                try
                 {
                     SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
@@ -265,21 +224,81 @@ namespace AppTest
                     Int32.TryParse(seatNumber.Text.Substring(14), out seatNumberInt);
 
 
-                    string command = "DELETE FROM BOOKING WHERE SSN = "
-                        + (int)row["SSN"] + " AND FLIGHTID = " + flightIDInt
+                    string command = "UPDATE BOOKING SET CLASS = '" + flightClassList.Text
+                        + "' WHERE SSN = " + (int)row["SSN"] + " AND FLIGHTID = " + flightIDInt
                         + " AND SEATNUMBER = " + seatNumberInt;
                     comm = new SqlCommand(command, con);
                     comm.ExecuteNonQuery();
 
                     con.Close();
 
+                    string message = "Class Changed Successfuly";
+                    string title = "Success";
+                    MessageBox.Show(message, title);
+
                     yourFlight.Controls.Clear();
+
+
                     yourFlight.InitializeComponent();
                     yourFlight.yourFlights_Load(sender, e);
                 }
-                else if (dialogResult == DialogResult.No)
+                catch (Exception ex)
                 {
-                    //do something else
+                    // Handle the exception
+                    string message = ex.Message;
+                    string title = "FAILED";
+                    MessageBox.Show(message, title);
+                }
+            }
+
+            private void cancelFlightClick(object sender, EventArgs e)
+            {
+                try
+                {
+                    string message = "Are you sure you want to cancel this flight?";
+                    string title = "Cancel Flight";
+                    DialogResult dialogResult = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+
+                        con.Open();
+
+                        DataRow row = Program.CustomerData.Rows[0];
+
+                        SqlCommand comm;
+
+                        int flightIDInt = 0;
+                        Int32.TryParse(flightid.Text.Substring(12), out flightIDInt);
+
+                        int seatNumberInt = 0;
+                        Int32.TryParse(seatNumber.Text.Substring(14), out seatNumberInt);
+
+
+                        string command = "DELETE FROM BOOKING WHERE SSN = "
+                            + (int)row["SSN"] + " AND FLIGHTID = " + flightIDInt
+                            + " AND SEATNUMBER = " + seatNumberInt;
+                        comm = new SqlCommand(command, con);
+                        comm.ExecuteNonQuery();
+
+                        con.Close();
+
+                        yourFlight.Controls.Clear();
+                        yourFlight.InitializeComponent();
+                        yourFlight.yourFlights_Load(sender, e);
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //do something else
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception
+                    string message = ex.Message;
+                    string title = "FAILED";
+                    MessageBox.Show(message, title);
                 }
             }
         }
@@ -290,54 +309,64 @@ namespace AppTest
 
         public void yourFlights_Load(object sender, EventArgs e)
         {
-
-            SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
-
-            con.Open();
-            DataTable flights = new DataTable();
-            DataTable bookings = new DataTable();
-            // TODO: This line of code loads data into the 'flightReservationDataSet.CUSTOMER' table. You can move, or remove it, as needed.
-            this.cUSTOMERTableAdapter.Fill(this.flightReservationDataSet.CUSTOMER);
-
-            DataRow row = Program.CustomerData.Rows[0];
-
-            string command = "SELECT * FROM BOOKING WHERE SSN = " + (int)row["SSN"];
-            SqlCommand comm = new SqlCommand(command, con);
-            SqlDataReader reader = comm.ExecuteReader();
-
-            bookings.Load(reader);
-
-
-            command = "SELECT * FROM FLIGHT, BOOKING WHERE FLIGHT.FLIGHTID = BOOKING.FLIGHTID AND BOOKING.SSN = " + (int)row["SSN"];
-            comm = new SqlCommand(command, con);
-            reader = comm.ExecuteReader();
-
-            flights.Load(reader);
-
-            DataRow flightsRow;
-            DataRow bookingsRow;
-
-            for (int i = 0; i < flights.Rows.Count; i++)
+            try
             {
-                flightsRow = flights.Rows[i];
-                bookingsRow = bookings.Rows[i];
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
 
-                flightsDetails f = new flightsDetails(this);
-                panel1.Controls.Add(f.space);
-                f.space.BringToFront();
-                panel1.Controls.Add(f.main);
-                f.main.BringToFront();
-                f.setData(flightsRow["FLIGHTID"].ToString(), bookingsRow["SEATNUMBER"].ToString(),
-                    bookingsRow["CLASS"].ToString(), bookingsRow["STATE"].ToString(),
-                    flightsRow["DESTINATION"].ToString(),
-                    flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString(),
-                    flightsRow["ARRIVINGDATE"].ToString(),
-                    bookingsRow["PRICE"].ToString());
+                con.Open();
+                DataTable flights = new DataTable();
+                DataTable bookings = new DataTable();
+                // TODO: This line of code loads data into the 'flightReservationDataSet.CUSTOMER' table. You can move, or remove it, as needed.
+                this.cUSTOMERTableAdapter.Fill(this.flightReservationDataSet.CUSTOMER);
+
+                DataRow row = Program.CustomerData.Rows[0];
+
+                string command = "SELECT * FROM BOOKING WHERE SSN = " + (int)row["SSN"];
+                SqlCommand comm = new SqlCommand(command, con);
+                SqlDataReader reader = comm.ExecuteReader();
+
+                bookings.Load(reader);
+
+
+                command = "SELECT * FROM FLIGHT, BOOKING WHERE FLIGHT.FLIGHTID = BOOKING.FLIGHTID AND BOOKING.SSN = " + (int)row["SSN"];
+                comm = new SqlCommand(command, con);
+                reader = comm.ExecuteReader();
+
+                flights.Load(reader);
+
+                DataRow flightsRow;
+                DataRow bookingsRow;
+
+                for (int i = 0; i < flights.Rows.Count; i++)
+                {
+                    flightsRow = flights.Rows[i];
+                    bookingsRow = bookings.Rows[i];
+
+                    flightsDetails f = new flightsDetails(this);
+                    panel1.Controls.Add(f.space);
+                    f.space.BringToFront();
+                    panel1.Controls.Add(f.main);
+                    f.main.BringToFront();
+                    f.setData(flightsRow["FLIGHTID"].ToString(), bookingsRow["SEATNUMBER"].ToString(),
+                        bookingsRow["CLASS"].ToString(), bookingsRow["STATE"].ToString(),
+                        flightsRow["DESTINATION"].ToString(),
+                        flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString(),
+                        flightsRow["ARRIVINGDATE"].ToString(),
+                        bookingsRow["PRICE"].ToString());
+                }
+
+
+                reader.Close();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
             }
 
-
-            reader.Close();
-            con.Close();
         }
 
 
