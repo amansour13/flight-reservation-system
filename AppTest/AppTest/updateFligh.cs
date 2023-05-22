@@ -104,7 +104,7 @@ namespace AppTest
 
                 con.Open();
 
-                SqlCommand comm;
+                SqlCommand comm, getAircraftSeatsNum;
                 string from = outgoing.Value.Year + "-" + outgoing.Value.Month + "-" + outgoing.Value.Day + " " + outgoing.Value.Hour + ":" + outgoing.Value.Minute + ":00";
                 string to = arriving.Value.Year + "-" + arriving.Value.Month + "-" + arriving.Value.Day + " " + arriving.Value.Hour + ":" + arriving.Value.Minute + ":00";
 
@@ -124,6 +124,26 @@ namespace AppTest
                 Int32.TryParse(aircraftIdText.Text, out airID);
 
                 float standardPrice = float.Parse(standardPriceText.Text);
+                
+                int seatsNum = 0;
+                Int32.TryParse(seatsNumText.Text, out seatsNum);
+
+
+                string getAircraftSeatsNumCommand = "select CAPACITY from AIRCRAFT where AIRCRAFTID = " + airID;
+                getAircraftSeatsNum = new SqlCommand(getAircraftSeatsNumCommand, con);
+                SqlDataReader reader = getAircraftSeatsNum.ExecuteReader();
+
+                int cap = 0;
+                while (reader.Read())
+                {
+                    cap = (int)reader["CAPACITY"];
+                }
+                reader.Close();
+
+                if (seatsNum > cap)
+                {
+                    throw new Exception("ERROR: The Seats Number Added is smaller than corresponding\n Aircraft Seats Number which = " + cap);
+                }
 
                 string command = "UPDATE FLIGHT SET AIRCRAFTID = '"
                         + airID + "', ADMINID = '"
