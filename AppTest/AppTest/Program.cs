@@ -15,7 +15,7 @@ namespace AppTest
         // LAPTOP-H6PI0HTC
         // DESKTOP-C145KAF
         // DESKTOP-A34VKT1
-        public static string serverName = "DESKTOP-A34VKT1";
+        public static string serverName = "LAPTOP-H6PI0HTC";
 
         public static bool IsValidEmail(string email)
         {

@@ -341,6 +341,19 @@ namespace AppTest
                 DataRow flightsRow;
                 DataRow bookingsRow;
 
+                if (flights.Rows.Count == 0)
+                {
+                    Label noFlightsLabel = new Label();
+
+                    noFlightsLabel.Dock = DockStyle.Fill;
+                    noFlightsLabel.ForeColor = Color.FromArgb(204, 51, 102);
+                    noFlightsLabel.BackColor = Color.FromArgb(25, 11, 35);
+                    noFlightsLabel.TextAlign = ContentAlignment.MiddleCenter;
+                    noFlightsLabel.Text = "You don't have any booked flights \n start booking by pressing Available Flights :D";
+                    noFlightsLabel.Font = new Font(noFlightsLabel.Font.FontFamily, 18);
+                    panel1.Controls.Add(noFlightsLabel);
+                }
+
                 for (int i = 0; i < flights.Rows.Count; i++)
                 {
                     flightsRow = flights.Rows[i];

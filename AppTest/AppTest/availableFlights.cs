@@ -35,8 +35,15 @@ namespace AppTest
             public static int CounterSeatNum = 1;
 
             public Button book = new Button();
-            public flightsBookingDetails()
+
+            private Panel dataPanel;
+
+            private availableFlights availableFlights;
+            public flightsBookingDetails(Panel dataPanel, availableFlights availableFlights)
             {
+                this.dataPanel = dataPanel;
+                this.availableFlights = availableFlights;
+
                 book.Click += new EventHandler(bookClick);
 
                 space.Dock = DockStyle.Top;
@@ -122,11 +129,14 @@ namespace AppTest
                     string title = "Success";
                     MessageBox.Show(message, title);
 
-                    /*yourFlight.Controls.Clear();
+
+                    availableFlights.dataPanel.Controls.Clear();
+
+                    availableFlights.dataPanel.Refresh();
+
+                    availableFlights.searchBtn.PerformClick();
 
 
-                    yourFlight.InitializeComponent();
-                    yourFlight.yourFlights_Load(sender, e);*/
                 }
                 catch (Exception ex)
                 {
@@ -250,10 +260,6 @@ namespace AppTest
             InitializeComponent();
         }
 
-        public Panel reload()
-        {
-            return dataPanel;
-        }
         private void reloadAllDatainComboBoxs()
         {
             try
@@ -385,7 +391,7 @@ namespace AppTest
                         DataRow bookingsRow = booking.Rows[0];
                         int numberOfSeats = (int)bookingsRow["number"];
 
-                        flightsBookingDetails f = new flightsBookingDetails();
+                        flightsBookingDetails f = new flightsBookingDetails(dataPanel, this);
                         flightsBookingDetails.CounterSeatNum = numberOfSeats + 1;
 
                         float std = float.Parse(flightsRow["STANDARDPRICE"].ToString());

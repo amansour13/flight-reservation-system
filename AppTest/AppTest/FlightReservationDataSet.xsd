@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FlightReservationConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FlightReservationConnectionString2 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AppTest.Properties.Settings.GlobalReference.Default.FlightReservationConnectionString2" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FlightReservationConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FlightReservationConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AppTest.Properties.Settings.GlobalReference.Default.FlightReservationConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ADMINTableAdapter" GeneratorDataComponentClassName="ADMINTableAdapter" Name="ADMIN" UserDataComponentName="ADMINTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="FlightReservationConnectionString2 (Settings)" DbObjectName="FlightReservation.dbo.ADMIN" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="FlightReservationConnectionString (Settings)" DbObjectName="FlightReservation.dbo.ADMIN" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[ADMIN] WHERE (([ADMINID] = @Original_ADMINID) AND ((@IsNull_AMAIL = 1 AND [AMAIL] IS NULL) OR ([AMAIL] = @Original_AMAIL)))</CommandText>
@@ -67,7 +67,7 @@ SELECT ADMINID, AFNAME, ALNAME, AMAIL, APASSWORD FROM ADMIN WHERE (ADMINID = @AD
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AIRCRAFTTableAdapter" GeneratorDataComponentClassName="AIRCRAFTTableAdapter" Name="AIRCRAFT" UserDataComponentName="AIRCRAFTTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="FlightReservationConnectionString2 (Settings)" DbObjectName="FlightReservation.dbo.AIRCRAFT" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="FlightReservationConnectionString (Settings)" DbObjectName="FlightReservation.dbo.AIRCRAFT" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[AIRCRAFT] WHERE (([AIRCRAFTID] = @Original_AIRCRAFTID) AND ((@IsNull_ADMINID = 1 AND [ADMINID] IS NULL) OR ([ADMINID] = @Original_ADMINID)) AND ([CAPACITY] = @Original_CAPACITY) AND ([DISTANCEALLOWED] = @Original_DISTANCEALLOWED))</CommandText>
@@ -129,7 +129,7 @@ SELECT AIRCRAFTID, ADMINID, CAPACITY, MANFACTURER, DISTANCEALLOWED FROM AIRCRAFT
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BOOKINGTableAdapter" GeneratorDataComponentClassName="BOOKINGTableAdapter" Name="BOOKING" UserDataComponentName="BOOKINGTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="FlightReservationConnectionString2 (Settings)" DbObjectName="FlightReservation.dbo.BOOKING" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="FlightReservationConnectionString (Settings)" DbObjectName="FlightReservation.dbo.BOOKING" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[BOOKING] WHERE (([SSN] = @Original_SSN) AND ([FLIGHTID] = @Original_FLIGHTID) AND ([SEATNUMBER] = @Original_SEATNUMBER) AND ((@IsNull_CLASS = 1 AND [CLASS] IS NULL) OR ([CLASS] = @Original_CLASS)) AND ((@IsNull_PRICE = 1 AND [PRICE] IS NULL) OR ([PRICE] = @Original_PRICE)))</CommandText>
@@ -199,7 +199,7 @@ SELECT SSN, FLIGHTID, SEATNUMBER, CLASS, STATE, PRICE FROM BOOKING WHERE (FLIGHT
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CUSTOMERTableAdapter" GeneratorDataComponentClassName="CUSTOMERTableAdapter" Name="CUSTOMER" UserDataComponentName="CUSTOMERTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="FlightReservationConnectionString2 (Settings)" DbObjectName="FlightReservation.dbo.CUSTOMER" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="FlightReservationConnectionString (Settings)" DbObjectName="FlightReservation.dbo.CUSTOMER" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[CUSTOMER] WHERE (([SSN] = @Original_SSN) AND ([BIRTHDATE] = @Original_BIRTHDATE) AND ([CMAIL] = @Original_CMAIL))</CommandText>
@@ -261,7 +261,7 @@ SELECT SSN, CFNAME, CLNAME, CPASSWORD, BIRTHDATE, CMAIL FROM CUSTOMER WHERE (SSN
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FLIGHTTableAdapter" GeneratorDataComponentClassName="FLIGHTTableAdapter" Name="FLIGHT" UserDataComponentName="FLIGHTTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="FlightReservationConnectionString2 (Settings)" DbObjectName="FlightReservation.dbo.FLIGHT" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="FlightReservationConnectionString (Settings)" DbObjectName="FlightReservation.dbo.FLIGHT" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[FLIGHT] WHERE (([FLIGHTID] = @Original_FLIGHTID) AND ((@IsNull_AIRCRAFTID = 1 AND [AIRCRAFTID] IS NULL) OR ([AIRCRAFTID] = @Original_AIRCRAFTID)) AND ([ADMINID] = @Original_ADMINID) AND ([SEATSNUMBER] = @Original_SEATSNUMBER) AND ([OUTGOINGDATE] = @Original_OUTGOINGDATE) AND ([ARRIVINGDATE] = @Original_ARRIVINGDATE) AND ((@IsNull_STANDARDPRICE = 1 AND [STANDARDPRICE] IS NULL) OR ([STANDARDPRICE] = @Original_STANDARDPRICE)))</CommandText>
@@ -343,7 +343,7 @@ SELECT FLIGHTID, AIRCRAFTID, ADMINID, SEATSNUMBER, SOURCE, DESTINATION, OUTGOING
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="LUGGAGE_WEAK_ENTITY_TableAdapter" GeneratorDataComponentClassName="LUGGAGE_WEAK_ENTITY_TableAdapter" Name="LUGGAGE_WEAK_ENTITY_" UserDataComponentName="LUGGAGE_WEAK_ENTITY_TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="FlightReservationConnectionString2 (Settings)" DbObjectName="FlightReservation.dbo.LUGGAGE_WEAK_ENTITY_" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="FlightReservationConnectionString (Settings)" DbObjectName="FlightReservation.dbo.LUGGAGE_WEAK_ENTITY_" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[LUGGAGE_WEAK_ENTITY_] WHERE (([SSN] = @Original_SSN) AND ([LID] = @Original_LID) AND ([WEIGHT] = @Original_WEIGHT))</CommandText>
@@ -399,35 +399,35 @@ SELECT SSN, LID, WEIGHT FROM LUGGAGE_WEAK_ENTITY_ WHERE (LID = @LID) AND (SSN = 
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="FlightReservationDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="FlightReservationDataSet" msprop:Generator_DataSetName="FlightReservationDataSet">
+  <xs:element name="FlightReservationDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="FlightReservationDataSet" msprop:Generator_UserDSName="FlightReservationDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ADMIN" msprop:Generator_RowEvHandlerName="ADMINRowChangeEventHandler" msprop:Generator_RowDeletedName="ADMINRowDeleted" msprop:Generator_RowDeletingName="ADMINRowDeleting" msprop:Generator_RowEvArgName="ADMINRowChangeEvent" msprop:Generator_TablePropName="ADMIN" msprop:Generator_RowChangedName="ADMINRowChanged" msprop:Generator_RowChangingName="ADMINRowChanging" msprop:Generator_TableClassName="ADMINDataTable" msprop:Generator_RowClassName="ADMINRow" msprop:Generator_TableVarName="tableADMIN" msprop:Generator_UserTableName="ADMIN">
+        <xs:element name="ADMIN" msprop:Generator_TableClassName="ADMINDataTable" msprop:Generator_TableVarName="tableADMIN" msprop:Generator_TablePropName="ADMIN" msprop:Generator_RowDeletingName="ADMINRowDeleting" msprop:Generator_RowChangingName="ADMINRowChanging" msprop:Generator_RowEvHandlerName="ADMINRowChangeEventHandler" msprop:Generator_RowDeletedName="ADMINRowDeleted" msprop:Generator_UserTableName="ADMIN" msprop:Generator_RowChangedName="ADMINRowChanged" msprop:Generator_RowEvArgName="ADMINRowChangeEvent" msprop:Generator_RowClassName="ADMINRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ADMINID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ADMINID" msprop:Generator_ColumnPropNameInTable="ADMINIDColumn" msprop:Generator_ColumnVarNameInTable="columnADMINID" msprop:Generator_UserColumnName="ADMINID" type="xs:int" />
-              <xs:element name="AFNAME" msprop:Generator_ColumnPropNameInRow="AFNAME" msprop:Generator_ColumnPropNameInTable="AFNAMEColumn" msprop:Generator_ColumnVarNameInTable="columnAFNAME" msprop:Generator_UserColumnName="AFNAME" minOccurs="0">
+              <xs:element name="ADMINID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnADMINID" msprop:Generator_ColumnPropNameInRow="ADMINID" msprop:Generator_ColumnPropNameInTable="ADMINIDColumn" msprop:Generator_UserColumnName="ADMINID" type="xs:int" />
+              <xs:element name="AFNAME" msprop:Generator_ColumnVarNameInTable="columnAFNAME" msprop:Generator_ColumnPropNameInRow="AFNAME" msprop:Generator_ColumnPropNameInTable="AFNAMEColumn" msprop:Generator_UserColumnName="AFNAME" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ALNAME" msprop:Generator_ColumnPropNameInRow="ALNAME" msprop:Generator_ColumnPropNameInTable="ALNAMEColumn" msprop:Generator_ColumnVarNameInTable="columnALNAME" msprop:Generator_UserColumnName="ALNAME" minOccurs="0">
+              <xs:element name="ALNAME" msprop:Generator_ColumnVarNameInTable="columnALNAME" msprop:Generator_ColumnPropNameInRow="ALNAME" msprop:Generator_ColumnPropNameInTable="ALNAMEColumn" msprop:Generator_UserColumnName="ALNAME" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="AMAIL" msprop:Generator_ColumnPropNameInRow="AMAIL" msprop:Generator_ColumnPropNameInTable="AMAILColumn" msprop:Generator_ColumnVarNameInTable="columnAMAIL" msprop:Generator_UserColumnName="AMAIL" minOccurs="0">
+              <xs:element name="AMAIL" msprop:Generator_ColumnVarNameInTable="columnAMAIL" msprop:Generator_ColumnPropNameInRow="AMAIL" msprop:Generator_ColumnPropNameInTable="AMAILColumn" msprop:Generator_UserColumnName="AMAIL" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="APASSWORD" msprop:Generator_ColumnPropNameInRow="APASSWORD" msprop:Generator_ColumnPropNameInTable="APASSWORDColumn" msprop:Generator_ColumnVarNameInTable="columnAPASSWORD" msprop:Generator_UserColumnName="APASSWORD" minOccurs="0">
+              <xs:element name="APASSWORD" msprop:Generator_ColumnVarNameInTable="columnAPASSWORD" msprop:Generator_ColumnPropNameInRow="APASSWORD" msprop:Generator_ColumnPropNameInTable="APASSWORDColumn" msprop:Generator_UserColumnName="APASSWORD" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
@@ -437,74 +437,74 @@ SELECT SSN, LID, WEIGHT FROM LUGGAGE_WEAK_ENTITY_ WHERE (LID = @LID) AND (SSN = 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AIRCRAFT" msprop:Generator_RowEvHandlerName="AIRCRAFTRowChangeEventHandler" msprop:Generator_RowDeletedName="AIRCRAFTRowDeleted" msprop:Generator_RowDeletingName="AIRCRAFTRowDeleting" msprop:Generator_RowEvArgName="AIRCRAFTRowChangeEvent" msprop:Generator_TablePropName="AIRCRAFT" msprop:Generator_RowChangedName="AIRCRAFTRowChanged" msprop:Generator_RowChangingName="AIRCRAFTRowChanging" msprop:Generator_TableClassName="AIRCRAFTDataTable" msprop:Generator_RowClassName="AIRCRAFTRow" msprop:Generator_TableVarName="tableAIRCRAFT" msprop:Generator_UserTableName="AIRCRAFT">
+        <xs:element name="AIRCRAFT" msprop:Generator_TableClassName="AIRCRAFTDataTable" msprop:Generator_TableVarName="tableAIRCRAFT" msprop:Generator_TablePropName="AIRCRAFT" msprop:Generator_RowDeletingName="AIRCRAFTRowDeleting" msprop:Generator_RowChangingName="AIRCRAFTRowChanging" msprop:Generator_RowEvHandlerName="AIRCRAFTRowChangeEventHandler" msprop:Generator_RowDeletedName="AIRCRAFTRowDeleted" msprop:Generator_UserTableName="AIRCRAFT" msprop:Generator_RowChangedName="AIRCRAFTRowChanged" msprop:Generator_RowEvArgName="AIRCRAFTRowChangeEvent" msprop:Generator_RowClassName="AIRCRAFTRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="AIRCRAFTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="AIRCRAFTID" msprop:Generator_ColumnPropNameInTable="AIRCRAFTIDColumn" msprop:Generator_ColumnVarNameInTable="columnAIRCRAFTID" msprop:Generator_UserColumnName="AIRCRAFTID" type="xs:int" />
-              <xs:element name="ADMINID" msprop:Generator_ColumnPropNameInRow="ADMINID" msprop:Generator_ColumnPropNameInTable="ADMINIDColumn" msprop:Generator_ColumnVarNameInTable="columnADMINID" msprop:Generator_UserColumnName="ADMINID" type="xs:int" minOccurs="0" />
-              <xs:element name="CAPACITY" msprop:Generator_ColumnPropNameInRow="CAPACITY" msprop:Generator_ColumnPropNameInTable="CAPACITYColumn" msprop:Generator_ColumnVarNameInTable="columnCAPACITY" msprop:Generator_UserColumnName="CAPACITY" type="xs:int" />
-              <xs:element name="MANFACTURER" msprop:Generator_ColumnPropNameInRow="MANFACTURER" msprop:Generator_ColumnPropNameInTable="MANFACTURERColumn" msprop:Generator_ColumnVarNameInTable="columnMANFACTURER" msprop:Generator_UserColumnName="MANFACTURER" minOccurs="0">
+              <xs:element name="AIRCRAFTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAIRCRAFTID" msprop:Generator_ColumnPropNameInRow="AIRCRAFTID" msprop:Generator_ColumnPropNameInTable="AIRCRAFTIDColumn" msprop:Generator_UserColumnName="AIRCRAFTID" type="xs:int" />
+              <xs:element name="ADMINID" msprop:Generator_ColumnVarNameInTable="columnADMINID" msprop:Generator_ColumnPropNameInRow="ADMINID" msprop:Generator_ColumnPropNameInTable="ADMINIDColumn" msprop:Generator_UserColumnName="ADMINID" type="xs:int" minOccurs="0" />
+              <xs:element name="CAPACITY" msprop:Generator_ColumnVarNameInTable="columnCAPACITY" msprop:Generator_ColumnPropNameInRow="CAPACITY" msprop:Generator_ColumnPropNameInTable="CAPACITYColumn" msprop:Generator_UserColumnName="CAPACITY" type="xs:int" />
+              <xs:element name="MANFACTURER" msprop:Generator_ColumnVarNameInTable="columnMANFACTURER" msprop:Generator_ColumnPropNameInRow="MANFACTURER" msprop:Generator_ColumnPropNameInTable="MANFACTURERColumn" msprop:Generator_UserColumnName="MANFACTURER" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DISTANCEALLOWED" msprop:Generator_ColumnPropNameInRow="DISTANCEALLOWED" msprop:Generator_ColumnPropNameInTable="DISTANCEALLOWEDColumn" msprop:Generator_ColumnVarNameInTable="columnDISTANCEALLOWED" msprop:Generator_UserColumnName="DISTANCEALLOWED" type="xs:double" />
+              <xs:element name="DISTANCEALLOWED" msprop:Generator_ColumnVarNameInTable="columnDISTANCEALLOWED" msprop:Generator_ColumnPropNameInRow="DISTANCEALLOWED" msprop:Generator_ColumnPropNameInTable="DISTANCEALLOWEDColumn" msprop:Generator_UserColumnName="DISTANCEALLOWED" type="xs:double" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BOOKING" msprop:Generator_RowEvHandlerName="BOOKINGRowChangeEventHandler" msprop:Generator_RowDeletedName="BOOKINGRowDeleted" msprop:Generator_RowDeletingName="BOOKINGRowDeleting" msprop:Generator_RowEvArgName="BOOKINGRowChangeEvent" msprop:Generator_TablePropName="BOOKING" msprop:Generator_RowChangedName="BOOKINGRowChanged" msprop:Generator_RowChangingName="BOOKINGRowChanging" msprop:Generator_TableClassName="BOOKINGDataTable" msprop:Generator_RowClassName="BOOKINGRow" msprop:Generator_TableVarName="tableBOOKING" msprop:Generator_UserTableName="BOOKING">
+        <xs:element name="BOOKING" msprop:Generator_TableClassName="BOOKINGDataTable" msprop:Generator_TableVarName="tableBOOKING" msprop:Generator_TablePropName="BOOKING" msprop:Generator_RowDeletingName="BOOKINGRowDeleting" msprop:Generator_RowChangingName="BOOKINGRowChanging" msprop:Generator_RowEvHandlerName="BOOKINGRowChangeEventHandler" msprop:Generator_RowDeletedName="BOOKINGRowDeleted" msprop:Generator_UserTableName="BOOKING" msprop:Generator_RowChangedName="BOOKINGRowChanged" msprop:Generator_RowEvArgName="BOOKINGRowChangeEvent" msprop:Generator_RowClassName="BOOKINGRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="SSN" msprop:Generator_ColumnPropNameInRow="SSN" msprop:Generator_ColumnPropNameInTable="SSNColumn" msprop:Generator_ColumnVarNameInTable="columnSSN" msprop:Generator_UserColumnName="SSN" type="xs:int" />
-              <xs:element name="FLIGHTID" msprop:Generator_ColumnPropNameInRow="FLIGHTID" msprop:Generator_ColumnPropNameInTable="FLIGHTIDColumn" msprop:Generator_ColumnVarNameInTable="columnFLIGHTID" msprop:Generator_UserColumnName="FLIGHTID" type="xs:int" />
-              <xs:element name="SEATNUMBER" msprop:Generator_ColumnPropNameInRow="SEATNUMBER" msprop:Generator_ColumnPropNameInTable="SEATNUMBERColumn" msprop:Generator_ColumnVarNameInTable="columnSEATNUMBER" msprop:Generator_UserColumnName="SEATNUMBER" type="xs:int" />
-              <xs:element name="CLASS" msprop:Generator_ColumnPropNameInRow="CLASS" msprop:Generator_ColumnPropNameInTable="CLASSColumn" msprop:Generator_ColumnVarNameInTable="columnCLASS" msprop:Generator_UserColumnName="CLASS" minOccurs="0">
+              <xs:element name="SSN" msprop:Generator_ColumnVarNameInTable="columnSSN" msprop:Generator_ColumnPropNameInRow="SSN" msprop:Generator_ColumnPropNameInTable="SSNColumn" msprop:Generator_UserColumnName="SSN" type="xs:int" />
+              <xs:element name="FLIGHTID" msprop:Generator_ColumnVarNameInTable="columnFLIGHTID" msprop:Generator_ColumnPropNameInRow="FLIGHTID" msprop:Generator_ColumnPropNameInTable="FLIGHTIDColumn" msprop:Generator_UserColumnName="FLIGHTID" type="xs:int" />
+              <xs:element name="SEATNUMBER" msprop:Generator_ColumnVarNameInTable="columnSEATNUMBER" msprop:Generator_ColumnPropNameInRow="SEATNUMBER" msprop:Generator_ColumnPropNameInTable="SEATNUMBERColumn" msprop:Generator_UserColumnName="SEATNUMBER" type="xs:int" />
+              <xs:element name="CLASS" msprop:Generator_ColumnVarNameInTable="columnCLASS" msprop:Generator_ColumnPropNameInRow="CLASS" msprop:Generator_ColumnPropNameInTable="CLASSColumn" msprop:Generator_UserColumnName="CLASS" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="STATE" msprop:Generator_ColumnPropNameInRow="STATE" msprop:Generator_ColumnPropNameInTable="STATEColumn" msprop:Generator_ColumnVarNameInTable="columnSTATE" msprop:Generator_UserColumnName="STATE">
+              <xs:element name="STATE" msprop:Generator_ColumnVarNameInTable="columnSTATE" msprop:Generator_ColumnPropNameInRow="STATE" msprop:Generator_ColumnPropNameInTable="STATEColumn" msprop:Generator_UserColumnName="STATE">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PRICE" msprop:Generator_ColumnPropNameInRow="PRICE" msprop:Generator_ColumnPropNameInTable="PRICEColumn" msprop:Generator_ColumnVarNameInTable="columnPRICE" msprop:Generator_UserColumnName="PRICE" type="xs:double" minOccurs="0" />
+              <xs:element name="PRICE" msprop:Generator_ColumnVarNameInTable="columnPRICE" msprop:Generator_ColumnPropNameInRow="PRICE" msprop:Generator_ColumnPropNameInTable="PRICEColumn" msprop:Generator_UserColumnName="PRICE" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUSTOMER" msprop:Generator_RowEvHandlerName="CUSTOMERRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMERRowDeleted" msprop:Generator_RowDeletingName="CUSTOMERRowDeleting" msprop:Generator_RowEvArgName="CUSTOMERRowChangeEvent" msprop:Generator_TablePropName="CUSTOMER" msprop:Generator_RowChangedName="CUSTOMERRowChanged" msprop:Generator_RowChangingName="CUSTOMERRowChanging" msprop:Generator_TableClassName="CUSTOMERDataTable" msprop:Generator_RowClassName="CUSTOMERRow" msprop:Generator_TableVarName="tableCUSTOMER" msprop:Generator_UserTableName="CUSTOMER">
+        <xs:element name="CUSTOMER" msprop:Generator_TableClassName="CUSTOMERDataTable" msprop:Generator_TableVarName="tableCUSTOMER" msprop:Generator_TablePropName="CUSTOMER" msprop:Generator_RowDeletingName="CUSTOMERRowDeleting" msprop:Generator_RowChangingName="CUSTOMERRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMERRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMERRowDeleted" msprop:Generator_UserTableName="CUSTOMER" msprop:Generator_RowChangedName="CUSTOMERRowChanged" msprop:Generator_RowEvArgName="CUSTOMERRowChangeEvent" msprop:Generator_RowClassName="CUSTOMERRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="SSN" msprop:Generator_ColumnPropNameInRow="SSN" msprop:Generator_ColumnPropNameInTable="SSNColumn" msprop:Generator_ColumnVarNameInTable="columnSSN" msprop:Generator_UserColumnName="SSN" type="xs:int" />
-              <xs:element name="CFNAME" msprop:Generator_ColumnPropNameInRow="CFNAME" msprop:Generator_ColumnPropNameInTable="CFNAMEColumn" msprop:Generator_ColumnVarNameInTable="columnCFNAME" msprop:Generator_UserColumnName="CFNAME">
+              <xs:element name="SSN" msprop:Generator_ColumnVarNameInTable="columnSSN" msprop:Generator_ColumnPropNameInRow="SSN" msprop:Generator_ColumnPropNameInTable="SSNColumn" msprop:Generator_UserColumnName="SSN" type="xs:int" />
+              <xs:element name="CFNAME" msprop:Generator_ColumnVarNameInTable="columnCFNAME" msprop:Generator_ColumnPropNameInRow="CFNAME" msprop:Generator_ColumnPropNameInTable="CFNAMEColumn" msprop:Generator_UserColumnName="CFNAME">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CLNAME" msprop:Generator_ColumnPropNameInRow="CLNAME" msprop:Generator_ColumnPropNameInTable="CLNAMEColumn" msprop:Generator_ColumnVarNameInTable="columnCLNAME" msprop:Generator_UserColumnName="CLNAME">
+              <xs:element name="CLNAME" msprop:Generator_ColumnVarNameInTable="columnCLNAME" msprop:Generator_ColumnPropNameInRow="CLNAME" msprop:Generator_ColumnPropNameInTable="CLNAMEColumn" msprop:Generator_UserColumnName="CLNAME">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CPASSWORD" msprop:Generator_ColumnPropNameInRow="CPASSWORD" msprop:Generator_ColumnPropNameInTable="CPASSWORDColumn" msprop:Generator_ColumnVarNameInTable="columnCPASSWORD" msprop:Generator_UserColumnName="CPASSWORD">
+              <xs:element name="CPASSWORD" msprop:Generator_ColumnVarNameInTable="columnCPASSWORD" msprop:Generator_ColumnPropNameInRow="CPASSWORD" msprop:Generator_ColumnPropNameInTable="CPASSWORDColumn" msprop:Generator_UserColumnName="CPASSWORD">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="BIRTHDATE" msprop:Generator_ColumnPropNameInRow="BIRTHDATE" msprop:Generator_ColumnPropNameInTable="BIRTHDATEColumn" msprop:Generator_ColumnVarNameInTable="columnBIRTHDATE" msprop:Generator_UserColumnName="BIRTHDATE" type="xs:dateTime" />
-              <xs:element name="CMAIL" msprop:Generator_ColumnPropNameInRow="CMAIL" msprop:Generator_ColumnPropNameInTable="CMAILColumn" msprop:Generator_ColumnVarNameInTable="columnCMAIL" msprop:Generator_UserColumnName="CMAIL">
+              <xs:element name="BIRTHDATE" msprop:Generator_ColumnVarNameInTable="columnBIRTHDATE" msprop:Generator_ColumnPropNameInRow="BIRTHDATE" msprop:Generator_ColumnPropNameInTable="BIRTHDATEColumn" msprop:Generator_UserColumnName="BIRTHDATE" type="xs:dateTime" />
+              <xs:element name="CMAIL" msprop:Generator_ColumnVarNameInTable="columnCMAIL" msprop:Generator_ColumnPropNameInRow="CMAIL" msprop:Generator_ColumnPropNameInTable="CMAILColumn" msprop:Generator_UserColumnName="CMAIL">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -514,39 +514,39 @@ SELECT SSN, LID, WEIGHT FROM LUGGAGE_WEAK_ENTITY_ WHERE (LID = @LID) AND (SSN = 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FLIGHT" msprop:Generator_RowEvHandlerName="FLIGHTRowChangeEventHandler" msprop:Generator_RowDeletedName="FLIGHTRowDeleted" msprop:Generator_RowDeletingName="FLIGHTRowDeleting" msprop:Generator_RowEvArgName="FLIGHTRowChangeEvent" msprop:Generator_TablePropName="FLIGHT" msprop:Generator_RowChangedName="FLIGHTRowChanged" msprop:Generator_RowChangingName="FLIGHTRowChanging" msprop:Generator_TableClassName="FLIGHTDataTable" msprop:Generator_RowClassName="FLIGHTRow" msprop:Generator_TableVarName="tableFLIGHT" msprop:Generator_UserTableName="FLIGHT">
+        <xs:element name="FLIGHT" msprop:Generator_TableClassName="FLIGHTDataTable" msprop:Generator_TableVarName="tableFLIGHT" msprop:Generator_TablePropName="FLIGHT" msprop:Generator_RowDeletingName="FLIGHTRowDeleting" msprop:Generator_RowChangingName="FLIGHTRowChanging" msprop:Generator_RowEvHandlerName="FLIGHTRowChangeEventHandler" msprop:Generator_RowDeletedName="FLIGHTRowDeleted" msprop:Generator_UserTableName="FLIGHT" msprop:Generator_RowChangedName="FLIGHTRowChanged" msprop:Generator_RowEvArgName="FLIGHTRowChangeEvent" msprop:Generator_RowClassName="FLIGHTRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="FLIGHTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="FLIGHTID" msprop:Generator_ColumnPropNameInTable="FLIGHTIDColumn" msprop:Generator_ColumnVarNameInTable="columnFLIGHTID" msprop:Generator_UserColumnName="FLIGHTID" type="xs:int" />
-              <xs:element name="AIRCRAFTID" msprop:Generator_ColumnPropNameInRow="AIRCRAFTID" msprop:Generator_ColumnPropNameInTable="AIRCRAFTIDColumn" msprop:Generator_ColumnVarNameInTable="columnAIRCRAFTID" msprop:Generator_UserColumnName="AIRCRAFTID" type="xs:int" minOccurs="0" />
-              <xs:element name="ADMINID" msprop:Generator_ColumnPropNameInRow="ADMINID" msprop:Generator_ColumnPropNameInTable="ADMINIDColumn" msprop:Generator_ColumnVarNameInTable="columnADMINID" msprop:Generator_UserColumnName="ADMINID" type="xs:int" />
-              <xs:element name="SEATSNUMBER" msprop:Generator_ColumnPropNameInRow="SEATSNUMBER" msprop:Generator_ColumnPropNameInTable="SEATSNUMBERColumn" msprop:Generator_ColumnVarNameInTable="columnSEATSNUMBER" msprop:Generator_UserColumnName="SEATSNUMBER" type="xs:int" />
-              <xs:element name="SOURCE" msprop:Generator_ColumnPropNameInRow="SOURCE" msprop:Generator_ColumnPropNameInTable="SOURCEColumn" msprop:Generator_ColumnVarNameInTable="columnSOURCE" msprop:Generator_UserColumnName="SOURCE">
+              <xs:element name="FLIGHTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnFLIGHTID" msprop:Generator_ColumnPropNameInRow="FLIGHTID" msprop:Generator_ColumnPropNameInTable="FLIGHTIDColumn" msprop:Generator_UserColumnName="FLIGHTID" type="xs:int" />
+              <xs:element name="AIRCRAFTID" msprop:Generator_ColumnVarNameInTable="columnAIRCRAFTID" msprop:Generator_ColumnPropNameInRow="AIRCRAFTID" msprop:Generator_ColumnPropNameInTable="AIRCRAFTIDColumn" msprop:Generator_UserColumnName="AIRCRAFTID" type="xs:int" minOccurs="0" />
+              <xs:element name="ADMINID" msprop:Generator_ColumnVarNameInTable="columnADMINID" msprop:Generator_ColumnPropNameInRow="ADMINID" msprop:Generator_ColumnPropNameInTable="ADMINIDColumn" msprop:Generator_UserColumnName="ADMINID" type="xs:int" />
+              <xs:element name="SEATSNUMBER" msprop:Generator_ColumnVarNameInTable="columnSEATSNUMBER" msprop:Generator_ColumnPropNameInRow="SEATSNUMBER" msprop:Generator_ColumnPropNameInTable="SEATSNUMBERColumn" msprop:Generator_UserColumnName="SEATSNUMBER" type="xs:int" />
+              <xs:element name="SOURCE" msprop:Generator_ColumnVarNameInTable="columnSOURCE" msprop:Generator_ColumnPropNameInRow="SOURCE" msprop:Generator_ColumnPropNameInTable="SOURCEColumn" msprop:Generator_UserColumnName="SOURCE">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DESTINATION" msprop:Generator_ColumnPropNameInRow="DESTINATION" msprop:Generator_ColumnPropNameInTable="DESTINATIONColumn" msprop:Generator_ColumnVarNameInTable="columnDESTINATION" msprop:Generator_UserColumnName="DESTINATION">
+              <xs:element name="DESTINATION" msprop:Generator_ColumnVarNameInTable="columnDESTINATION" msprop:Generator_ColumnPropNameInRow="DESTINATION" msprop:Generator_ColumnPropNameInTable="DESTINATIONColumn" msprop:Generator_UserColumnName="DESTINATION">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="OUTGOINGDATE" msprop:Generator_ColumnPropNameInRow="OUTGOINGDATE" msprop:Generator_ColumnPropNameInTable="OUTGOINGDATEColumn" msprop:Generator_ColumnVarNameInTable="columnOUTGOINGDATE" msprop:Generator_UserColumnName="OUTGOINGDATE" type="xs:dateTime" />
-              <xs:element name="ARRIVINGDATE" msprop:Generator_ColumnPropNameInRow="ARRIVINGDATE" msprop:Generator_ColumnPropNameInTable="ARRIVINGDATEColumn" msprop:Generator_ColumnVarNameInTable="columnARRIVINGDATE" msprop:Generator_UserColumnName="ARRIVINGDATE" type="xs:dateTime" />
-              <xs:element name="STANDARDPRICE" msprop:Generator_ColumnPropNameInRow="STANDARDPRICE" msprop:Generator_ColumnPropNameInTable="STANDARDPRICEColumn" msprop:Generator_ColumnVarNameInTable="columnSTANDARDPRICE" msprop:Generator_UserColumnName="STANDARDPRICE" type="xs:double" minOccurs="0" />
+              <xs:element name="OUTGOINGDATE" msprop:Generator_ColumnVarNameInTable="columnOUTGOINGDATE" msprop:Generator_ColumnPropNameInRow="OUTGOINGDATE" msprop:Generator_ColumnPropNameInTable="OUTGOINGDATEColumn" msprop:Generator_UserColumnName="OUTGOINGDATE" type="xs:dateTime" />
+              <xs:element name="ARRIVINGDATE" msprop:Generator_ColumnVarNameInTable="columnARRIVINGDATE" msprop:Generator_ColumnPropNameInRow="ARRIVINGDATE" msprop:Generator_ColumnPropNameInTable="ARRIVINGDATEColumn" msprop:Generator_UserColumnName="ARRIVINGDATE" type="xs:dateTime" />
+              <xs:element name="STANDARDPRICE" msprop:Generator_ColumnVarNameInTable="columnSTANDARDPRICE" msprop:Generator_ColumnPropNameInRow="STANDARDPRICE" msprop:Generator_ColumnPropNameInTable="STANDARDPRICEColumn" msprop:Generator_UserColumnName="STANDARDPRICE" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LUGGAGE_WEAK_ENTITY_" msprop:Generator_RowEvHandlerName="LUGGAGE_WEAK_ENTITY_RowChangeEventHandler" msprop:Generator_RowDeletedName="LUGGAGE_WEAK_ENTITY_RowDeleted" msprop:Generator_RowDeletingName="LUGGAGE_WEAK_ENTITY_RowDeleting" msprop:Generator_RowEvArgName="LUGGAGE_WEAK_ENTITY_RowChangeEvent" msprop:Generator_TablePropName="LUGGAGE_WEAK_ENTITY_" msprop:Generator_RowChangedName="LUGGAGE_WEAK_ENTITY_RowChanged" msprop:Generator_RowChangingName="LUGGAGE_WEAK_ENTITY_RowChanging" msprop:Generator_TableClassName="LUGGAGE_WEAK_ENTITY_DataTable" msprop:Generator_RowClassName="LUGGAGE_WEAK_ENTITY_Row" msprop:Generator_TableVarName="tableLUGGAGE_WEAK_ENTITY_" msprop:Generator_UserTableName="LUGGAGE_WEAK_ENTITY_">
+        <xs:element name="LUGGAGE_WEAK_ENTITY_" msprop:Generator_TableClassName="LUGGAGE_WEAK_ENTITY_DataTable" msprop:Generator_TableVarName="tableLUGGAGE_WEAK_ENTITY_" msprop:Generator_TablePropName="LUGGAGE_WEAK_ENTITY_" msprop:Generator_RowDeletingName="LUGGAGE_WEAK_ENTITY_RowDeleting" msprop:Generator_RowChangingName="LUGGAGE_WEAK_ENTITY_RowChanging" msprop:Generator_RowEvHandlerName="LUGGAGE_WEAK_ENTITY_RowChangeEventHandler" msprop:Generator_RowDeletedName="LUGGAGE_WEAK_ENTITY_RowDeleted" msprop:Generator_UserTableName="LUGGAGE_WEAK_ENTITY_" msprop:Generator_RowChangedName="LUGGAGE_WEAK_ENTITY_RowChanged" msprop:Generator_RowEvArgName="LUGGAGE_WEAK_ENTITY_RowChangeEvent" msprop:Generator_RowClassName="LUGGAGE_WEAK_ENTITY_Row">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="SSN" msprop:Generator_ColumnPropNameInRow="SSN" msprop:Generator_ColumnPropNameInTable="SSNColumn" msprop:Generator_ColumnVarNameInTable="columnSSN" msprop:Generator_UserColumnName="SSN" type="xs:int" />
-              <xs:element name="LID" msprop:Generator_ColumnPropNameInRow="LID" msprop:Generator_ColumnPropNameInTable="LIDColumn" msprop:Generator_ColumnVarNameInTable="columnLID" msprop:Generator_UserColumnName="LID" type="xs:int" />
-              <xs:element name="WEIGHT" msprop:Generator_ColumnPropNameInRow="WEIGHT" msprop:Generator_ColumnPropNameInTable="WEIGHTColumn" msprop:Generator_ColumnVarNameInTable="columnWEIGHT" msprop:Generator_UserColumnName="WEIGHT" type="xs:int" />
+              <xs:element name="SSN" msprop:Generator_ColumnVarNameInTable="columnSSN" msprop:Generator_ColumnPropNameInRow="SSN" msprop:Generator_ColumnPropNameInTable="SSNColumn" msprop:Generator_UserColumnName="SSN" type="xs:int" />
+              <xs:element name="LID" msprop:Generator_ColumnVarNameInTable="columnLID" msprop:Generator_ColumnPropNameInRow="LID" msprop:Generator_ColumnPropNameInTable="LIDColumn" msprop:Generator_UserColumnName="LID" type="xs:int" />
+              <xs:element name="WEIGHT" msprop:Generator_ColumnVarNameInTable="columnWEIGHT" msprop:Generator_ColumnPropNameInRow="WEIGHT" msprop:Generator_ColumnPropNameInTable="WEIGHTColumn" msprop:Generator_UserColumnName="WEIGHT" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -582,12 +582,12 @@ SELECT SSN, LID, WEIGHT FROM LUGGAGE_WEAK_ENTITY_ WHERE (LID = @LID) AND (SSN = 
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_AIRCRAFT_ADD_ADMIN" msdata:parent="ADMIN" msdata:child="AIRCRAFT" msdata:parentkey="ADMINID" msdata:childkey="ADMINID" msprop:Generator_UserParentTable="ADMIN" msprop:Generator_UserChildTable="AIRCRAFT" msprop:Generator_RelationVarName="relationFK_AIRCRAFT_ADD_ADMIN" msprop:Generator_ChildPropName="GetAIRCRAFTRows" msprop:Generator_ParentPropName="ADMINRow" msprop:Generator_UserRelationName="FK_AIRCRAFT_ADD_ADMIN" />
-      <msdata:Relationship name="FK_BOOKING_BOOKING_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="BOOKING" msdata:parentkey="SSN" msdata:childkey="SSN" msprop:Generator_UserParentTable="CUSTOMER" msprop:Generator_UserChildTable="BOOKING" msprop:Generator_RelationVarName="relationFK_BOOKING_BOOKING_CUSTOMER" msprop:Generator_UserRelationName="FK_BOOKING_BOOKING_CUSTOMER" msprop:Generator_ChildPropName="GetBOOKINGRows" msprop:Generator_ParentPropName="CUSTOMERRow" />
-      <msdata:Relationship name="FK_BOOKING_BOOKING2_FLIGHT" msdata:parent="FLIGHT" msdata:child="BOOKING" msdata:parentkey="FLIGHTID" msdata:childkey="FLIGHTID" msprop:Generator_UserParentTable="FLIGHT" msprop:Generator_UserChildTable="BOOKING" msprop:Generator_RelationVarName="relationFK_BOOKING_BOOKING2_FLIGHT" msprop:Generator_UserRelationName="FK_BOOKING_BOOKING2_FLIGHT" msprop:Generator_ChildPropName="GetBOOKINGRows" msprop:Generator_ParentPropName="FLIGHTRow" />
-      <msdata:Relationship name="FK_FLIGHT_CONTAIN_AIRCRAFT" msdata:parent="AIRCRAFT" msdata:child="FLIGHT" msdata:parentkey="AIRCRAFTID" msdata:childkey="AIRCRAFTID" msprop:Generator_UserParentTable="AIRCRAFT" msprop:Generator_UserChildTable="FLIGHT" msprop:Generator_RelationVarName="relationFK_FLIGHT_CONTAIN_AIRCRAFT" msprop:Generator_ChildPropName="GetFLIGHTRows" msprop:Generator_ParentPropName="AIRCRAFTRow" msprop:Generator_UserRelationName="FK_FLIGHT_CONTAIN_AIRCRAFT" />
-      <msdata:Relationship name="FK_FLIGHT_CREATE_ADMIN" msdata:parent="ADMIN" msdata:child="FLIGHT" msdata:parentkey="ADMINID" msdata:childkey="ADMINID" msprop:Generator_UserParentTable="ADMIN" msprop:Generator_UserChildTable="FLIGHT" msprop:Generator_RelationVarName="relationFK_FLIGHT_CREATE_ADMIN" msprop:Generator_ChildPropName="GetFLIGHTRows" msprop:Generator_ParentPropName="ADMINRow" msprop:Generator_UserRelationName="FK_FLIGHT_CREATE_ADMIN" />
-      <msdata:Relationship name="FK_LUGGAGE__HAS_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="LUGGAGE_WEAK_ENTITY_" msdata:parentkey="SSN" msdata:childkey="SSN" msprop:Generator_UserParentTable="CUSTOMER" msprop:Generator_UserChildTable="LUGGAGE_WEAK_ENTITY_" msprop:Generator_RelationVarName="relationFK_LUGGAGE__HAS_CUSTOMER" msprop:Generator_ChildPropName="GetLUGGAGE_WEAK_ENTITY_Rows" msprop:Generator_ParentPropName="CUSTOMERRow" msprop:Generator_UserRelationName="FK_LUGGAGE__HAS_CUSTOMER" />
+      <msdata:Relationship name="FK_AIRCRAFT_ADD_ADMIN" msdata:parent="ADMIN" msdata:child="AIRCRAFT" msdata:parentkey="ADMINID" msdata:childkey="ADMINID" msprop:Generator_UserChildTable="AIRCRAFT" msprop:Generator_ChildPropName="GetAIRCRAFTRows" msprop:Generator_UserRelationName="FK_AIRCRAFT_ADD_ADMIN" msprop:Generator_ParentPropName="ADMINRow" msprop:Generator_RelationVarName="relationFK_AIRCRAFT_ADD_ADMIN" msprop:Generator_UserParentTable="ADMIN" />
+      <msdata:Relationship name="FK_BOOKING_BOOKING_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="BOOKING" msdata:parentkey="SSN" msdata:childkey="SSN" msprop:Generator_UserChildTable="BOOKING" msprop:Generator_ChildPropName="GetBOOKINGRows" msprop:Generator_UserRelationName="FK_BOOKING_BOOKING_CUSTOMER" msprop:Generator_RelationVarName="relationFK_BOOKING_BOOKING_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" />
+      <msdata:Relationship name="FK_BOOKING_BOOKING2_FLIGHT" msdata:parent="FLIGHT" msdata:child="BOOKING" msdata:parentkey="FLIGHTID" msdata:childkey="FLIGHTID" msprop:Generator_UserChildTable="BOOKING" msprop:Generator_ChildPropName="GetBOOKINGRows" msprop:Generator_UserRelationName="FK_BOOKING_BOOKING2_FLIGHT" msprop:Generator_RelationVarName="relationFK_BOOKING_BOOKING2_FLIGHT" msprop:Generator_UserParentTable="FLIGHT" msprop:Generator_ParentPropName="FLIGHTRow" />
+      <msdata:Relationship name="FK_FLIGHT_CONTAIN_AIRCRAFT" msdata:parent="AIRCRAFT" msdata:child="FLIGHT" msdata:parentkey="AIRCRAFTID" msdata:childkey="AIRCRAFTID" msprop:Generator_UserChildTable="FLIGHT" msprop:Generator_ChildPropName="GetFLIGHTRows" msprop:Generator_UserRelationName="FK_FLIGHT_CONTAIN_AIRCRAFT" msprop:Generator_ParentPropName="AIRCRAFTRow" msprop:Generator_RelationVarName="relationFK_FLIGHT_CONTAIN_AIRCRAFT" msprop:Generator_UserParentTable="AIRCRAFT" />
+      <msdata:Relationship name="FK_FLIGHT_CREATE_ADMIN" msdata:parent="ADMIN" msdata:child="FLIGHT" msdata:parentkey="ADMINID" msdata:childkey="ADMINID" msprop:Generator_UserChildTable="FLIGHT" msprop:Generator_ChildPropName="GetFLIGHTRows" msprop:Generator_UserRelationName="FK_FLIGHT_CREATE_ADMIN" msprop:Generator_ParentPropName="ADMINRow" msprop:Generator_RelationVarName="relationFK_FLIGHT_CREATE_ADMIN" msprop:Generator_UserParentTable="ADMIN" />
+      <msdata:Relationship name="FK_LUGGAGE__HAS_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="LUGGAGE_WEAK_ENTITY_" msdata:parentkey="SSN" msdata:childkey="SSN" msprop:Generator_UserChildTable="LUGGAGE_WEAK_ENTITY_" msprop:Generator_ChildPropName="GetLUGGAGE_WEAK_ENTITY_Rows" msprop:Generator_UserRelationName="FK_LUGGAGE__HAS_CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" msprop:Generator_RelationVarName="relationFK_LUGGAGE__HAS_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

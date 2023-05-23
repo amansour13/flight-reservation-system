@@ -53,11 +53,10 @@ namespace AppTest
                 SqlCommand comm;
 
 
-                // to be added later
-                /*if (!Program.IsValidEmail(emailText.Text))
+                if (!Program.IsValidEmail(emailText.Text))
                 {
                     throw new Exception("ERROR: Invalid Email Address\n");
-                }*/
+                }
 
                 if (adminCheckbox.Checked)
                 {
@@ -69,7 +68,8 @@ namespace AppTest
                 }
                 else
                 {
-                    if ((!Program.IsStringNumeric(SSNTextBox.Text)))
+                    
+                    if ((!Program.IsStringNumeric(SSNTextBox.Text)) || SSNTextBox.Text == "")
                     {
                         throw new Exception("ERROR : can not add string in integer field\ncheck all integer fields");
                     }
