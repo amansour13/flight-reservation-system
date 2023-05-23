@@ -1,0 +1,16 @@
+1- you must add database on your device and name it ("FlightReservation").
+2- open file crebas.sql.
+3- copy all commands in it.
+4- open new query in paste the commands.
+5- run all these commands.
+
+
+
+NOTE: that you need to install visual studio 2022
+
+
+
+1- open the project on visual studio.
+2- open "Program.cs" file.
+3- change variable "serverName" with your server name.
+4- add data source to this project and bind it to the corresponding database we made previous.
