@@ -31,10 +31,14 @@ namespace AppTest
             public Label outgoingDate = new Label();
             public Label arrivingDate = new Label();
             public Label price = new Label();
+            public Label seatNum = new Label();
+            public static int CounterSeatNum = 1;
 
             public Button book = new Button();
             public flightsBookingDetails()
             {
+                book.Click += new EventHandler(bookClick);
+
                 space.Dock = DockStyle.Top;
                 space.BackColor = Color.FromArgb(25, 11, 35);
                 space.Height = 20;
@@ -62,6 +66,76 @@ namespace AppTest
 
             }
 
+            public void readSeatNum(int flightID)
+            {
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+
+                con.Open();
+
+                string command = "UPDATE FLIGHT SET SEATSNUMBER = (SEATSNUMBER - 1)"
+                    + "WHERE FLIGHTID = " + flightID + ";";
+                SqlCommand comm = new SqlCommand(command, con);
+                comm.ExecuteReader();
+
+                con.Close();
+
+            }
+
+
+            private void bookClick(object sender, EventArgs e)
+            {
+                try
+                {
+                    SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+
+                    con.Open();
+
+                    DataRow row = Program.CustomerData.Rows[0];
+
+                    SqlCommand comm;
+
+                    int flightIDInt = 0;
+                    Int32.TryParse(flightid.Text.Substring(12), out flightIDInt);
+
+                    int seatNumberInt = 0;
+                    Int32.TryParse(seatNum.Text.Substring(14), out seatNumberInt);
+
+                    char BClass = flightClass.Text[flightClass.Text.Length - 1];
+
+                    string state = "Booked";
+
+                    int Bprice = 0;
+                    Int32.TryParse(price.Text.Substring(8), out Bprice);
+
+
+                    string command = "INSERT INTO BOOKING VALUES(" + (int)row["SSN"]
+                        + "," + flightIDInt + "," + seatNumberInt + ", '"
+                        + BClass + "', '" + state + "', " + Bprice + ")";
+                    comm = new SqlCommand(command, con);
+                    comm.ExecuteNonQuery();
+
+                    readSeatNum(flightIDInt);
+                    CounterSeatNum++;
+                    con.Close();
+
+                    string message = "Book done Successfuly";
+                    string title = "Success";
+                    MessageBox.Show(message, title);
+
+                    /*yourFlight.Controls.Clear();
+
+
+                    yourFlight.InitializeComponent();
+                    yourFlight.yourFlights_Load(sender, e);*/
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception
+                    string message = ex.Message;
+                    string title = "FAILED";
+                    MessageBox.Show(message, title);
+                }
+            }
             private void addingheadContent()
             {
                 head.Dock = DockStyle.Top;
@@ -71,18 +145,21 @@ namespace AppTest
                 seatsNumber.Text = "Available Seats Number : ";
                 flightClass.Text = "Flight Class : ";
                 price.Text = "Price : ";
+                seatNum.Text = "Seat Number : ";
 
                 seatsNumber.AutoSize = true;
                 /*flightid.AutoSize = true;
                 flightClass.AutoSize = true;
                 price.AutoSize = true;*/
 
+                seatNum.Dock = DockStyle.Left;
                 seatsNumber.Dock = DockStyle.Left;
                 flightid.Dock = DockStyle.Left;
                 flightClass.Dock = DockStyle.Left;
                 price.Dock = DockStyle.Left;
-                
 
+
+                seatNum.ForeColor = Color.White;
                 flightid.ForeColor = Color.White;
                 seatsNumber.ForeColor = Color.White;
                 flightClass.ForeColor = Color.White;
@@ -90,7 +167,7 @@ namespace AppTest
 
                 head.Padding = new Padding(20, 5, 5, 5);
 
-
+                head.Controls.Add(seatNum);
                 head.Controls.Add(seatsNumber);
                 head.Controls.Add(flightid);
                 
@@ -163,6 +240,8 @@ namespace AppTest
                 this.price.Text += price;
                 this.outgoingDate.Text += outgoing;
                 this.arrivingDate.Text += arriving;
+                this.seatNum.Text += CounterSeatNum.ToString();
+                // CounterSeatNum++;
             }
         }
 
@@ -171,17 +250,98 @@ namespace AppTest
             InitializeComponent();
         }
 
+        public Panel reload()
+        {
+            return dataPanel;
+        }
+        private void reloadAllDatainComboBoxs()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(@"Data Source = " + Program.serverName + "; Initial Catalog = FlightReservation; Integrated Security =True");
+
+                con.Open();
+
+                string command = "SELECT SOURCE,DESTINATION,OUTGOINGDATE FROM FLIGHT";
+                SqlCommand comm = new SqlCommand(command, con);
+                SqlDataReader reader = comm.ExecuteReader();
+
+                List<string> sourcesReader = new List<string>();
+                List<string> destReader = new List<string>();
+                List<string> dateReader = new List<string>();
+
+                sourcesReader.Add("None");
+                destReader.Add("None");
+                dateReader.Add("None");
+
+                while (reader.Read())
+                {
+                    string source = reader["SOURCE"].ToString();
+                    string dest = reader["DESTINATION"].ToString();
+                    string date = reader["OUTGOINGDATE"].ToString();
+                    sourcesReader.Add(source);
+                    destReader.Add(dest);
+                    dateReader.Add(date);
+                }
+
+
+                reader.Close();
+                con.Close();
+
+                comboBox1.DataSource = sourcesReader;
+                comboBox2.DataSource = destReader;
+                comboBox3.DataSource = dateReader;
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                string message = ex.Message;
+                string title = "FAILED";
+                MessageBox.Show(message, title);
+            }
+        }
+
         private void availableFlights_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'flightReservationDataSet2.FLIGHT' table. You can move, or remove it, as needed.
-            this.fLIGHTTableAdapter.Fill(this.flightReservationDataSet2.FLIGHT);
-            // TODO: This line of code loads data into the 'flightReservationDataSet2.FLIGHT' table. You can move, or remove it, as needed.
-            this.fLIGHTTableAdapter.Fill(this.flightReservationDataSet2.FLIGHT);
-            // TODO: This line of code loads data into the 'flightReservationDataSet2.FLIGHT' table. You can move, or remove it, as needed.
-            this.fLIGHTTableAdapter.Fill(this.flightReservationDataSet2.FLIGHT);
+            reloadAllDatainComboBoxs();
             comboBox4.SelectedIndex = 0;
         }
 
+        public string searchCommand(string com)
+        {
+            com = "SELECT * FROM FLIGHT ";
+
+            if (comboBox1.Text != "None" || comboBox2.Text != "None" || comboBox3.Text != "None")
+            {
+                com += "WHERE ";
+
+                if (comboBox1.Text != "None")
+                {
+                    com += "CONVERT(nvarchar(MAX), SOURCE) = '" + comboBox1.Text + "'";
+                }
+
+                if (comboBox2.Text != "None")
+                {
+                    if (comboBox1.Text != "None")
+                    {
+                        com += " AND ";
+                    }
+                    com += "CONVERT(nvarchar(MAX), DESTINATION) = '" + comboBox2.Text + "'";
+                }
+
+                if (comboBox3.Text != "None")
+                {
+                    if (comboBox1.Text != "None" || comboBox2.Text != "None")
+                    {
+                        com += " AND ";
+                    }
+                    com += "OUTGOINGDATE = '" + comboBox3.Text + "'";
+                }
+            }
+
+            return com;
+
+        }
         private void searchBtn_Click(object sender, EventArgs e)
         {
             try
@@ -192,13 +352,16 @@ namespace AppTest
                 con.Open();
                 DataTable flights = new DataTable();
 
-                string command = "SELECT * FROM FLIGHT WHERE CONVERT(nvarchar(MAX), SOURCE) = '" + comboBox1.Text
-                    + "'AND CONVERT(nvarchar(MAX), DESTINATION) = '" + comboBox2.Text
-                    + "'AND OUTGOINGDATE = '" + comboBox3.Text + "'";
+                DataTable booking = new DataTable();
+
+                string command = "SELECT * FROM FLIGHT";
+                command = searchCommand(command);
                 SqlCommand comm = new SqlCommand(command, con);
                 SqlDataReader reader = comm.ExecuteReader();
 
                 flights.Load(reader);
+
+
 
                 DataRow flightsRow;
 
@@ -206,22 +369,40 @@ namespace AppTest
                 {
                     flightsRow = flights.Rows[i];
 
-                    flightsBookingDetails f = new flightsBookingDetails();
+                    if ((int)flightsRow["SEATSNUMBER"] <= 0)
+                    {
+                        string message = "Flight does not have a available seats!";
+                        string title = "Not Found";
+                        MessageBox.Show(message, title);
+                    }
+                    else
+                    {
 
-                    float std = float.Parse(flightsRow["STANDARDPRICE"].ToString());
-                    char c = comboBox4.Text[0];
+                        command = "SELECT COUNT(SEATNUMBER) as number FROM BOOKING WHERE FLIGHTID = " + (int)flightsRow["FLIGHTID"];
+                        comm = new SqlCommand(command, con);
+                        reader = comm.ExecuteReader();
+                        booking.Load(reader);
+                        DataRow bookingsRow = booking.Rows[0];
+                        int numberOfSeats = (int)bookingsRow["number"];
 
-                    string price = Program.priceFormula(std, c).ToString();
+                        flightsBookingDetails f = new flightsBookingDetails();
+                        flightsBookingDetails.CounterSeatNum = numberOfSeats + 1;
 
-                    f.setData(flightsRow["FLIGHTID"].ToString(), flightsRow["SEATSNUMBER"].ToString()
-                    , comboBox4.Text, flightsRow["DESTINATION"].ToString()
-                    , flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString()
-                    , flightsRow["ARRIVINGDATE"].ToString()
-                    , price);
+                        float std = float.Parse(flightsRow["STANDARDPRICE"].ToString());
+                        char c = comboBox4.Text[0];
+
+                        string price = Program.priceFormula(std, c).ToString();
+
+                        f.setData(flightsRow["FLIGHTID"].ToString(), flightsRow["SEATSNUMBER"].ToString()
+                        , comboBox4.Text, flightsRow["DESTINATION"].ToString()
+                        , flightsRow["SOURCE"].ToString(), flightsRow["OUTGOINGDATE"].ToString()
+                        , flightsRow["ARRIVINGDATE"].ToString()
+                        , price);
 
 
-                    dataPanel.Controls.Add(f.space);
-                    dataPanel.Controls.Add(f.main);
+                        dataPanel.Controls.Add(f.space);
+                        dataPanel.Controls.Add(f.main);
+                    }
 
                 }
                 reader.Close();

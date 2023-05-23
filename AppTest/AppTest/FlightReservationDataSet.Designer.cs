@@ -44,6 +44,8 @@ namespace AppTest {
         
         private global::System.Data.DataRelation relationFK_FLIGHT_CONTAIN_AIRCRAFT;
         
+        private global::System.Data.DataRelation relationFK_FLIGHT_CREATE_ADMIN;
+        
         private global::System.Data.DataRelation relationFK_LUGGAGE__HAS_CUSTOMER;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
@@ -328,6 +330,7 @@ namespace AppTest {
             this.relationFK_BOOKING_BOOKING_CUSTOMER = this.Relations["FK_BOOKING_BOOKING_CUSTOMER"];
             this.relationFK_BOOKING_BOOKING2_FLIGHT = this.Relations["FK_BOOKING_BOOKING2_FLIGHT"];
             this.relationFK_FLIGHT_CONTAIN_AIRCRAFT = this.Relations["FK_FLIGHT_CONTAIN_AIRCRAFT"];
+            this.relationFK_FLIGHT_CREATE_ADMIN = this.Relations["FK_FLIGHT_CREATE_ADMIN"];
             this.relationFK_LUGGAGE__HAS_CUSTOMER = this.Relations["FK_LUGGAGE__HAS_CUSTOMER"];
         }
         
@@ -367,6 +370,10 @@ namespace AppTest {
                         this.tableAIRCRAFT.AIRCRAFTIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableFLIGHT.AIRCRAFTIDColumn}, false);
             this.Relations.Add(this.relationFK_FLIGHT_CONTAIN_AIRCRAFT);
+            this.relationFK_FLIGHT_CREATE_ADMIN = new global::System.Data.DataRelation("FK_FLIGHT_CREATE_ADMIN", new global::System.Data.DataColumn[] {
+                        this.tableADMIN.ADMINIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableFLIGHT.ADMINIDColumn}, false);
+            this.Relations.Add(this.relationFK_FLIGHT_CREATE_ADMIN);
             this.relationFK_LUGGAGE__HAS_CUSTOMER = new global::System.Data.DataRelation("FK_LUGGAGE__HAS_CUSTOMER", new global::System.Data.DataColumn[] {
                         this.tableCUSTOMER.SSNColumn}, new global::System.Data.DataColumn[] {
                         this.tableLUGGAGE_WEAK_ENTITY_.SSNColumn}, false);
@@ -1974,12 +1981,12 @@ namespace AppTest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FLIGHTRow AddFLIGHTRow(AIRCRAFTRow parentAIRCRAFTRowByFK_FLIGHT_CONTAIN_AIRCRAFT, int ADMINID, int SEATSNUMBER, string SOURCE, string DESTINATION, System.DateTime OUTGOINGDATE, System.DateTime ARRIVINGDATE, double STANDARDPRICE) {
+            public FLIGHTRow AddFLIGHTRow(AIRCRAFTRow parentAIRCRAFTRowByFK_FLIGHT_CONTAIN_AIRCRAFT, ADMINRow parentADMINRowByFK_FLIGHT_CREATE_ADMIN, int SEATSNUMBER, string SOURCE, string DESTINATION, System.DateTime OUTGOINGDATE, System.DateTime ARRIVINGDATE, double STANDARDPRICE) {
                 FLIGHTRow rowFLIGHTRow = ((FLIGHTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
-                        ADMINID,
+                        null,
                         SEATSNUMBER,
                         SOURCE,
                         DESTINATION,
@@ -1988,6 +1995,9 @@ namespace AppTest {
                         STANDARDPRICE};
                 if ((parentAIRCRAFTRowByFK_FLIGHT_CONTAIN_AIRCRAFT != null)) {
                     columnValuesArray[1] = parentAIRCRAFTRowByFK_FLIGHT_CONTAIN_AIRCRAFT[0];
+                }
+                if ((parentADMINRowByFK_FLIGHT_CREATE_ADMIN != null)) {
+                    columnValuesArray[2] = parentADMINRowByFK_FLIGHT_CREATE_ADMIN[0];
                 }
                 rowFLIGHTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFLIGHTRow);
@@ -2631,6 +2641,17 @@ namespace AppTest {
                     return ((AIRCRAFTRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AIRCRAFT_ADD_ADMIN"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FLIGHTRow[] GetFLIGHTRows() {
+                if ((this.Table.ChildRelations["FK_FLIGHT_CREATE_ADMIN"] == null)) {
+                    return new FLIGHTRow[0];
+                }
+                else {
+                    return ((FLIGHTRow[])(base.GetChildRows(this.Table.ChildRelations["FK_FLIGHT_CREATE_ADMIN"])));
+                }
+            }
         }
         
         /// <summary>
@@ -3135,6 +3156,17 @@ namespace AppTest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ADMINRow ADMINRow {
+                get {
+                    return ((ADMINRow)(this.GetParentRow(this.Table.ParentRelations["FK_FLIGHT_CREATE_ADMIN"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_FLIGHT_CREATE_ADMIN"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsAIRCRAFTIDNull() {
                 return this.IsNull(this.tableFLIGHT.AIRCRAFTIDColumn);
             }
@@ -3600,7 +3632,7 @@ SELECT ADMINID, AFNAME, ALNAME, AMAIL, APASSWORD FROM ADMIN WHERE (ADMINID = @AD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString1;
+            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3974,7 +4006,7 @@ SELECT AIRCRAFTID, ADMINID, CAPACITY, MANFACTURER, DISTANCEALLOWED FROM AIRCRAFT
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString1;
+            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4338,7 +4370,7 @@ SELECT SSN, FLIGHTID, SEATNUMBER, CLASS, STATE, PRICE FROM BOOKING WHERE (FLIGHT
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString1;
+            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4725,7 +4757,7 @@ SELECT SSN, CFNAME, CLNAME, CPASSWORD, BIRTHDATE, CMAIL FROM CUSTOMER WHERE (SSN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString1;
+            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5117,7 +5149,7 @@ SELECT FLIGHTID, AIRCRAFTID, ADMINID, SEATSNUMBER, SOURCE, DESTINATION, OUTGOING
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString1;
+            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5530,7 +5562,7 @@ SELECT SSN, LID, WEIGHT FROM LUGGAGE_WEAK_ENTITY_ WHERE (LID = @LID) AND (SSN = 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString1;
+            this._connection.ConnectionString = global::AppTest.Properties.Settings.Default.FlightReservationConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

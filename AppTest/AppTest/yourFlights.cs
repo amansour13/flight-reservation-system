@@ -282,6 +282,10 @@ namespace AppTest
                         comm = new SqlCommand(command, con);
                         comm.ExecuteNonQuery();
 
+                        command = "UPDATE FLIGHT SET SEATSNUMBER = (SEATSNUMBER + 1)";
+                        comm = new SqlCommand(command, con);
+                        comm.ExecuteNonQuery();
+
                         con.Close();
 
                         yourFlight.Controls.Clear();
