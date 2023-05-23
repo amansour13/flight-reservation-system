@@ -36,19 +36,21 @@
             this.addAircraft = new System.Windows.Forms.Button();
             this.profileButton = new System.Windows.Forms.Button();
             this.logoPanel = new System.Windows.Forms.Panel();
+            this.logoBox = new System.Windows.Forms.PictureBox();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.helloLabel = new System.Windows.Forms.Label();
-            this.logoBox = new System.Windows.Forms.PictureBox();
+            this.reportBtn = new System.Windows.Forms.Button();
             this.sideMenuPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
-            this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // sideMenuPanel
             // 
             this.sideMenuPanel.AutoScroll = true;
             this.sideMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(3)))), ((int)(((byte)(27)))));
+            this.sideMenuPanel.Controls.Add(this.reportBtn);
             this.sideMenuPanel.Controls.Add(this.updateFlight);
             this.sideMenuPanel.Controls.Add(this.addFlight);
             this.sideMenuPanel.Controls.Add(this.logOutBtn);
@@ -188,6 +190,19 @@
             this.logoPanel.Size = new System.Drawing.Size(333, 170);
             this.logoPanel.TabIndex = 2;
             // 
+            // logoBox
+            // 
+            this.logoBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.logoBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logoBox.Image = global::AppTest.Properties.Resources.landing;
+            this.logoBox.Location = new System.Drawing.Point(0, 0);
+            this.logoBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.logoBox.Name = "logoBox";
+            this.logoBox.Size = new System.Drawing.Size(333, 170);
+            this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.logoBox.TabIndex = 0;
+            this.logoBox.TabStop = false;
+            // 
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(11)))), ((int)(((byte)(35)))));
@@ -211,18 +226,24 @@
             this.helloLabel.Text = "label1";
             this.helloLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // logoBox
+            // reportBtn
             // 
-            this.logoBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.logoBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoBox.Image = global::AppTest.Properties.Resources.landing;
-            this.logoBox.Location = new System.Drawing.Point(0, 0);
-            this.logoBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.logoBox.Name = "logoBox";
-            this.logoBox.Size = new System.Drawing.Size(333, 170);
-            this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.logoBox.TabIndex = 0;
-            this.logoBox.TabStop = false;
+            this.reportBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(3)))), ((int)(((byte)(27)))));
+            this.reportBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.reportBtn.FlatAppearance.BorderSize = 0;
+            this.reportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
+            this.reportBtn.Location = new System.Drawing.Point(0, 445);
+            this.reportBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.reportBtn.Name = "reportBtn";
+            this.reportBtn.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.reportBtn.Size = new System.Drawing.Size(333, 55);
+            this.reportBtn.TabIndex = 9;
+            this.reportBtn.Text = "Report";
+            this.reportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportBtn.UseVisualStyleBackColor = false;
+            this.reportBtn.Click += new System.EventHandler(this.reportBtn_Click);
             // 
             // adminForm
             // 
@@ -237,8 +258,8 @@
             this.Load += new System.EventHandler(this.adminForm_Load);
             this.sideMenuPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
-            this.mainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
+            this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -255,5 +276,6 @@
         private System.Windows.Forms.Label helloLabel;
         private System.Windows.Forms.Button updateFlight;
         private System.Windows.Forms.Button addFlight;
+        private System.Windows.Forms.Button reportBtn;
     }
 }

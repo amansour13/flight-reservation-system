@@ -76,5 +76,11 @@ namespace AppTest
             updateFligh upateFlight = new updateFligh();
             openChildFormInPanel(upateFlight);
         }
+
+        private void reportBtn_Click(object sender, EventArgs e)
+        {
+            report repo = new report();
+            openChildFormInPanel(repo);
+        }
     }
 }
