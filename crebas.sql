@@ -312,3 +312,32 @@ ADD CONSTRAINT PK_BOOKING PRIMARY KEY(SSN,FLIGHTID,SEATNUMBER)
 
  ALTER TABLE BOOKING
  ADD PRICE float ;
+ 
+ 
+-- Insert random data into ADMIN table
+INSERT INTO ADMIN (AFNAME, ALNAME, AMAIL, APASSWORD)
+VALUES
+  ('John', 'Doe', 'john.doe@example.com', 'password1'),
+  ('Jane', 'Smith', 'jane.smith@example.com', 'password2'),
+  ('Mike', 'Johnson', 'mike.johnson@example.com', 'password3');
+
+-- Insert random data into AIRCRAFT table
+INSERT INTO AIRCRAFT (ADMINID, CAPACITY, MANFACTURER, DISTANCEALLOWED)
+VALUES
+  (1, 300, 'Manufacturer A', 1000.0),
+  (2, 200, 'Manufacturer B', 1200.0),
+  (1, 120, 'Manufacturer C', 900.0);
+
+-- Insert random data into CUSTOMER table
+INSERT INTO CUSTOMER (SSN, CFNAME, CLNAME, CPASSWORD, BIRTHDATE, CMAIL)
+VALUES
+  (123456789, 'Alice', 'Johnson', 'password4', '1990-01-01', 'alice.johnson@example.com'),
+  (987654321, 'Bob', 'Williams', 'password5', '1985-05-15', 'bob.williams@example.com'),
+  (555555555, 'Eve', 'Davis', 'password6', '1998-12-31', 'eve.davis@example.com');
+
+-- Insert random data into FLIGHT table
+INSERT INTO FLIGHT (AIRCRAFTID, ADMINID, SEATSNUMBER, SOURCE, DESTINATION, OUTGOINGDATE, ARRIVINGDATE, STANDARDPRICE)
+VALUES
+  (1, 1, 200, 'City A', 'City B', '2023-05-25 08:00:00', '2023-05-25 10:00:00', 100),
+  (2, 2, 150, 'City B', 'City C', '2023-05-26 09:30:00', '2023-05-26 11:30:00', 100),
+  (1, 2, 180, 'City A', 'City C', '2023-05-27 11:00:00', '2023-05-27 13:00:00', 100);

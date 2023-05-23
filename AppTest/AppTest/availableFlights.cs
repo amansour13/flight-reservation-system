@@ -32,7 +32,7 @@ namespace AppTest
             public Label arrivingDate = new Label();
             public Label price = new Label();
             public Label seatNum = new Label();
-            public static int CounterSeatNum = 1;
+            public int CounterSeatNum = 1;
 
             public Button book = new Button();
 
@@ -122,6 +122,7 @@ namespace AppTest
                     comm.ExecuteNonQuery();
 
                     readSeatNum(flightIDInt);
+
                     CounterSeatNum++;
                     con.Close();
 
@@ -251,7 +252,6 @@ namespace AppTest
                 this.outgoingDate.Text += outgoing;
                 this.arrivingDate.Text += arriving;
                 this.seatNum.Text += CounterSeatNum.ToString();
-                // CounterSeatNum++;
             }
         }
 
@@ -377,22 +377,26 @@ namespace AppTest
 
                     if ((int)flightsRow["SEATSNUMBER"] <= 0)
                     {
-                        string message = "Flight does not have a available seats!";
-                        string title = "Not Found";
-                        MessageBox.Show(message, title);
+                        continue;
                     }
                     else
                     {
-
-                        command = "SELECT COUNT(SEATNUMBER) as number FROM BOOKING WHERE FLIGHTID = " + (int)flightsRow["FLIGHTID"];
+                        int d = (int)flightsRow["FLIGHTID"];
+                        flightsBookingDetails f = new flightsBookingDetails(dataPanel, this);
+                        command = "SELECT COUNT(SEATNUMBER) as number FROM BOOKING WHERE FLIGHTID = " + d;
                         comm = new SqlCommand(command, con);
                         reader = comm.ExecuteReader();
-                        booking.Load(reader);
-                        DataRow bookingsRow = booking.Rows[0];
-                        int numberOfSeats = (int)bookingsRow["number"];
+                       
+                        int s = -99;
+                        while (reader.Read())
+                        {
+                            s = (int)reader["number"];
+                        }
+        
+                        int numberOfSeats = s;
+                        reader.Close();
 
-                        flightsBookingDetails f = new flightsBookingDetails(dataPanel, this);
-                        flightsBookingDetails.CounterSeatNum = numberOfSeats + 1;
+                        f.CounterSeatNum = numberOfSeats + 1;
 
                         float std = float.Parse(flightsRow["STANDARDPRICE"].ToString());
                         char c = comboBox4.Text[0];

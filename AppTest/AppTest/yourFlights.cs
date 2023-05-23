@@ -282,7 +282,8 @@ namespace AppTest
                         comm = new SqlCommand(command, con);
                         comm.ExecuteNonQuery();
 
-                        command = "UPDATE FLIGHT SET SEATSNUMBER = (SEATSNUMBER + 1)";
+                        command = "UPDATE FLIGHT SET SEATSNUMBER = (SEATSNUMBER + 1) WHERE FLIGHTID = "
+                            + flightIDInt;
                         comm = new SqlCommand(command, con);
                         comm.ExecuteNonQuery();
 
