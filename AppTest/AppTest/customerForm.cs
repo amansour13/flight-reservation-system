@@ -35,7 +35,8 @@ namespace AppTest
         {
             LoginPage login = new LoginPage();
             this.Hide();
-            Program.CustomerData.Rows.Clear();
+            Program.CustomerData = new DataTable();
+           
             login.ShowDialog();
             this.Close();
 
